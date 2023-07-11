@@ -1,5 +1,9 @@
-
-
+    .fa-brands{
+        background-color: rgb(248, 244, 244);
+    }
+    .fa-solid{
+        background-color: rgb(248, 244, 244);;
+    }
     .a {
         position: relative;
        
@@ -9,6 +13,10 @@
         box-shadow: 0px 0px 8mm ;
         border-radius: 7px;
     }
+    .welcomeCon{
+        margin-bottom: 13px;
+    }
+    
     .images {
         position: absolute;
         right: 0;
@@ -111,7 +119,7 @@
         
     }
 
-    @media  screen  and (max-width: 1080px){
+    @media  screen  and (max-width: 1180px){
         .a{
             flex-direction: column;
         }
@@ -131,6 +139,15 @@
             width: auto;
             
         }
+        .icon{
+            display: flex;
+            justify-content: space-evenly;
+        }
+        .button{
+            justify-content: flex-end;
+            display: flex;
+            width: 80%;
+        }
         .a{
             
             margin: 50px;
@@ -138,8 +155,8 @@
     }
     @media  screen  and (max-width: 500px){
         .images {
-            width: 70%;
-            
+            width: 80%;
+            margin: 30px;
         }
         .a{
             
@@ -151,11 +168,14 @@
         }
         .button{
             gap: 15px;
+            display: flex;
+            justify-content: flex-start;
         }
         .welcome{
             font-size: 13px;
             margin-top: 0px;
-            width: 210px;
+            width: 125%;
+            margin-left: -30px;
         }
         h2{
             font-size: 17px;
@@ -166,19 +186,26 @@
            margin-top: 60px;
         }
     }
-    @media  screen  and (min-width: 499px){
-        .hmbgShow{
-         display: none;   
-            
-        }
-    }
-
     @media  screen  and (max-width: 512px){
         .hidden{display: none;
         }
         .hide{
             display: flex;
         }
-        
     }
+    @media  screen  and (min-width: 499px){
+        .hmbgShow{
+         display: none;   
+            
+        }
+    }
+    @media screen and (max-width:400px){
+        .welcome{
+            font-size: 13px;
+            margin-top: 0px;
+            width: 144%;
+            margin-left: -30px;
+        }
+    }
+
     

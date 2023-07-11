@@ -4,7 +4,7 @@
     align-items: center;
 }
 input[type=text], select, textarea {
-    width: 100%;
+    
     padding: 12px;
     border: 0px solid #faf6f6;
     border-radius: 5px;
@@ -83,6 +83,12 @@ input[type=submit]:hover {
     .icon{
         letter-spacing: 5px;
         font-size: 30px;
+        display: flex;
+        justify-content: space-between;
+        width: 110%;
+    }
+    .bdownload{
+        font-size: small;
     }
 }
 @media screen and (max-width:506px){
