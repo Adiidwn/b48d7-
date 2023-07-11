@@ -1,0 +1,84 @@
+nav {
+    display: flex;
+    background-color: rgb(248, 244, 244);;
+    height: 45px;
+    overflow: hidden;
+    justify-content: space-between;
+    
+    
+}
+nav ul {
+    display: flex;
+    margin-left: 20px;
+    gap: 30px;
+}
+nav ul li {
+    list-style-type: none;
+    background-color: rgb(248, 244, 244);;
+    font-family: cursive;
+    display: flex;
+ 
+    
+}
+div div{
+    background-color: rgb(248, 244, 244);;
+    margin:75px;
+    margin-left: 60px;
+}
+nav ul li a{
+    color: black;
+    text-decoration: none;
+    background-color: rgb(248, 244, 244);;
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+li a:hover {
+    background-color: orangered;
+    font-size: larger;
+}
+
+.bcontactMe {
+    align-items: center;
+    background-color: rgb(248, 244, 244);;
+    margin-right: 40px;
+    
+}
+.bcontactMe a{
+    
+    background-color: black; 
+    color: rgb(217, 217, 228); 
+    padding: 6px 20px; 
+    border-radius: 7px; 
+    text-decoration: none;
+}
+.dumbways{
+    height: 23px;
+    width: 33px;
+    background-color: rgb(248, 235, 235);
+    display: flex;
+    align-self: center;
+}
+.hidden{
+    display: flex;
+}
+.hide{
+    display: none;
+}
+@media  screen  and (max-width: 512px){
+    .hidden{display: none;
+    }
+    .hide{
+        display: flex;
+    }
+    
+}
+@media  screen  and (max-width: 680px){
+    nav ul {
+        margin-left: 0;
+    }
+}
+
+
+

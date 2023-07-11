@@ -1,0 +1,282 @@
+.cardProject{
+    display: flex; 
+    /* float: left; 
+    gap: 20px;  */
+    margin-top: 0px;
+    width: 290px;
+    
+    background-color: white;
+}
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+.container input:checked ~ .checkmark {
+    background-color: black;
+
+}
+
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 15px;
+    width: 15px;
+    background-color: #eee;
+    border-radius: 5px;
+}
+.projectItem{
+    box-shadow: 0px 0px 10px;
+    margin: 0;
+    background-color: lightgrey;
+    border-radius: 7px;
+}
+.projectItemcontoh{
+    box-shadow: 0px 0px 10px;
+    margin: 0;
+    background-color: lightgrey;
+    border-radius: 7px;
+    width: 290px;
+}
+.linkProject{
+    color: black;
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: bolder;
+    border-radius: 100px;
+    border-color: black;
+    
+}
+.linkProject:hover{
+    font-size: 30px;
+}
+
+.projectImage{
+    height: 270px;
+    width: 270px; 
+    display: flex;
+    padding: 10px;
+    background-color: lightgrey;
+    border-radius: 30px;
+}
+.imageProject{
+    margin: 0; 
+    background-color: lightgrey;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+    font-size: smaller;
+    padding: 7px;
+
+}
+.dateProject{
+    font-size: smaller;
+    color: rgb(54, 51, 51); margin-top: -5px;
+    margin-left: 6px;
+    margin-bottom: 10px;
+    background-color: lightgrey;
+}
+.contentProject{
+    display: flex;
+    width: 93%;
+    margin: 0;
+    text-align: justify;
+    padding: 10px;
+    background-color: lightgrey;
+}
+.btnMother{
+    background-color: lightgrey;
+    margin: 0;
+    
+    height: 30px;
+
+}
+.btnFather{
+    display: flex;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.btn-edit{
+    border-radius: 1000px;
+    width: 50%;
+}
+.btn-edit:hover{
+    font-size: larger;
+}
+.btn-delete{
+    border-radius: 1000px;
+    width: 50%;
+}
+.btn-delete:hover{
+    font-size: larger;
+}
+.detailProjectContent{
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    height: 100px;
+}
+.imageEdit{
+    height: 100%;
+    width: 100%;
+}
+.iconProject{
+    margin: 0;
+    padding: 10px;
+    color: black; 
+    text-decoration: none;background-color: lightgrey;
+    font-size: 28px;
+    height: 35px;
+    
+    display: flex;
+    gap: 15px;
+}
+#node1{
+    display: none;
+
+}
+.grid-container{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    
+    margin-top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(248, 244, 244);
+}
+.grid-item {
+ 
+    background-color: rgb(248, 244, 244);
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    /* width: 1445px;
+    margin-top: -560px;
+    margin-left: 300px; */
+  }
+  .h1myproject {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    height: 170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(248, 244, 244);
+  }
+  .Dates{
+    height: 40px; 
+    width: 100%;
+    margin-left: 0;
+    margin-top: 0; 
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    background-color:rgb(214, 218, 218);
+    margin-bottom: 30px;
+  }
+  .StartDate{
+    width: 43%; 
+    position: absolute; 
+    margin-top: 24px;
+    padding: 8px;
+    background-color: white; 
+    left: 0;
+  }
+  .EndDate{
+    width: 43%; 
+    position: absolute;
+    margin-top: 24px;
+    padding: 8px;
+    background-color: white;
+    right: 0; 
+  }
+  .EndDateText{
+    position: absolute; 
+    right: 160px;
+  }
+
+  .technologies{
+    height: 50px; 
+    margin-top: 0;
+    margin-left: 0; 
+    width: 400px;
+    display: flex;
+  }
+  .technologies1{
+    background-color: rgb(214, 218, 218); 
+    display: flex; 
+    flex-direction: column;
+    float: right;
+    width: 50%;
+  }
+  .technologies2{
+    background-color: rgb(214, 218, 218); 
+    
+    
+    float: right;
+    width: 50%;
+  }
+  .chooseFile{
+    width: 100%; 
+    background-color: white; 
+    margin-bottom: 30px;
+  }
+  .myProject{
+    background-color: rgb(248, 244, 244);
+   
+    border-radius: 10px;
+    box-shadow: 0px 0px 100px;
+    width: 100%;
+    
+  }
+
+@media screen and (max-width:506px){
+    .EndDate{
+        right: 50px;
+        width: 29%;
+    }
+    .StartDate{
+        width: 29%;
+    }
+    .Dates{
+        margin-left: 34%;
+        
+    }
+    .chooseFile{
+        width: 80%;
+}
+.technologies1{
+    align-items: center;
+    width: 100%;
+}
+.technologies2{
+    align-items: center;
+}
+.grid-item {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+}
+.EndDateText{
+    right: 90px;
+}
+}
