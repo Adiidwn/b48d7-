@@ -1,8 +1,38 @@
 .testitop{
-    height: 200px;
+    
     display: flex;
     align-items: center;
-    justify-content: center;
+    margin-top: 40px;
+    flex-direction: column;
+    gap: 20px;
+    
+}
+.fa-regular{
+    background-color: rgb(33, 47, 47);
+    color: white;
+}
+.bottonStar{
+    background-color: rgb(33, 47, 47);
+    color: white;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+.buttonStar.pointer {
+    cursor: pointer;
+  }
+.bottonStar:hover{
+    font-size: larger;
+    background-color: darkslategrey;
+    .fa-regular{
+        background-color: darkslategrey;
+    }
+}
+.testiIcon{
+    margin-top: 15px;
+    display: flex;
+    gap: 40px;
+    background-color: lightgrey;
+    
 }
 .testiGrid{
     margin: 0;
@@ -32,11 +62,13 @@
 }
 .testiinCard{
     margin: 5px;
+    background-color: white;
 }
 .testiText{
     background-color: white; 
     font-style: italic;
     margin-left: -40px;
+    margin-bottom: 10px;
 }
 .testiUser{
     background-color: white;
@@ -49,6 +81,9 @@
 @media  screen and ( max-width: 800px ){
     .testiCard{
         width: 80%;
+    }
+    .testiIcon{
+        gap: 15px;
     }
 }
 
