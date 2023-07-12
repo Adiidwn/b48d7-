@@ -1,71 +1,82 @@
-class Testimonials{
-    #text = ""
-    #image = ""
-    constructor(text,image){
-        this.#text = text
-        this.#image = image
-    }
-
-    get text(){
-        return this.#text
-    }
-    get image(){
-        return this.#image
-    }
-    
-    get autors(){
-        throw new Error('theres must be an autors to make testimonials')
-    }
-
-    get testimonialsHTML(){
-        return `
-        <div class="testiCard">
-        <!-- IMAGES -->
-        <img class="testiImage" src="${this.image}" />
-        <!-- ISI CONTENT -->
-            <div class="testiinCard">
-                <p class="testiText">"${this.text}"</p>
-                <p class="testiUser">- ${this.autors} </p>
-            </div>                  
-        </div>`
-    }
-
+// testimonialsHTML(){
+//         
+// DATA
+const testiData = [
+{
+    image : "https://images.unsplash.com/photo-1616161560417-66d4db5892ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGFpfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
+    text : "Keren banget sih bang",
+    autors : "Adiwidiawan",
+    rating : 5,
+},
+{
+    image : "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YWl8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
+    text : "Gila sihh keceeh",
+    autors : "Frimawan",
+    rating : 4,
+},
+{
+    image : "https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
+    text : "Pecah paraah gilee",
+    autors : "Rispo",
+    rating : 5,
+},
+{
+    image : "https://pbs.twimg.com/media/FzNmxICacAA-o_d.jpg",
+    text : "gak ada kuasa",
+    autors : "filsuf",
+    rating : 1,
 }
-
-class AutorsTestimonoals extends Testimonials{
-    user = ""
-
-    constructor(user,text,image){
-        super(text,image)
-        this.user = user
-    }
-
-    get autors (){
-        return "User : " + this.user
-    }
+,
+{
+    image : "https://cdn.kibrispdr.org/data/596/gatau-males-mau-beli-truk-meme-4.webp   ",
+    text : "keren sih tapi...",
+    autors : "unknown",
+    rating : 3,
 }
-class OwnerTestimonials extends Testimonials{
-    #owner = ""
+]
 
-    constructor(owner,text,image){
-        super(text,image)
-        this.#owner = owner
-    }
-    get autors(){
-        return "Owner : " + this.#owner
-    }
-}
+// ALL TESTIMONIALS
 
-const testi1 = new AutorsTestimonoals("Adiwidiawan","Keren banget sih bang","https://images.unsplash.com/photo-1616161560417-66d4db5892ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGFpfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60")
-const testi2 = new AutorsTestimonoals("Frimawan","Gila sihh keceeh","https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YWl8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60")
-const testi3 = new OwnerTestimonials("Rispo","Pecah paraah gilee","https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60")
+function testimonialsAll(){
+    let testimonialsHTML = ""
 
-let testimonialsData = [testi1,testi2,testi3]
+    testiData.forEach((items) =>{ 
+        testimonialsHTML += `
+             <div class="testiCard">
+             <!-- IMAGES -->
+             <img class="testiImage" src="${items.image}" />
+             <!-- ISI CONTENT -->
+                 <div class="testiinCard">
+                     <p class="testiText">"${items.text}"</p>
+                     <p class="testiUser">- ${items.autors} </p>
+                     <p class="testiRating"> ${items.rating} <i class="fa-solid fa-star"></i></p>
+                 </div>                  
+             </div>`
 
-let testimonialsHTML = ""
-
-for (let i = 0 ; i < testimonialsData.length; i++) {
-    testimonialsHTML += testimonialsData[i].testimonialsHTML
-}
-
+})     
 document.getElementById("testimonials").innerHTML = testimonialsHTML
+}
+testimonialsAll()
+
+// FILTER
+function FilterTestimonial(rate) {
+    let filteredTestimonialHTML = ""
+
+    const filteredData = testiData.filter((items) => {
+        return items.rating === rate
+    })
+    filteredData.forEach((items) =>{ 
+        filteredTestimonialHTML += `
+             <div class="testiCard">
+             <!-- IMAGES -->
+             <img class="testiImage" src="${items.image}" />
+             <!-- ISI CONTENT -->
+                 <div class="testiinCard">
+                     <p class="testiText">"${items.text}"</p>
+                     <p class="testiUser">- ${items.autors} </p>
+                     <p class="testiRating"> ${items.rating} <i class="fa-solid fa-star"></i></p>
+                 </div>                  
+             </div>`
+})
+document.getElementById("testimonials").innerHTML = filteredTestimonialHTML
+}

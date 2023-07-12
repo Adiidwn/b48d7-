@@ -5,7 +5,7 @@
     margin-top: 40px;
     flex-direction: column;
     gap: 20px;
-    
+    margin-bottom: -30px;
 }
 .fa-regular{
     background-color: rgb(33, 47, 47);
@@ -17,18 +17,16 @@
     border: 1px solid black;
     border-radius: 3px;
 }
-.buttonStar.pointer {
-    cursor: pointer;
-  }
+
 .bottonStar:hover{
-    font-size: larger;
+    
     background-color: darkslategrey;
     .fa-regular{
         background-color: darkslategrey;
     }
 }
 .testiIcon{
-    margin-top: 15px;
+    margin-top: 0px;
     display: flex;
     gap: 40px;
     background-color: lightgrey;
@@ -46,7 +44,7 @@
     margin: 0;
     background-color: white;
     border-radius: 7px;
-    width: 20%;
+    width: 19%;
     height: 300px;
     display: flex;
     flex-direction: column;
@@ -61,8 +59,9 @@
     object-fit: cover;
 }
 .testiinCard{
-    margin: 5px;
+    margin: 4px;
     background-color: white;
+    width: 60%;
 }
 .testiText{
     background-color: white; 
@@ -78,13 +77,15 @@
     font-weight: bolder;
     font-size: smaller;
 }
-@media  screen and ( max-width: 800px ){
-    .testiCard{
-        width: 80%;
-    }
-    .testiIcon{
-        gap: 15px;
-    }
+.testiRating{
+    background-color: white;
+    align-items: center;
+    justify-content: flex-end;
+    display: flex;
+    justify-content: flex-end;
+    width: 120%;
+    font-weight: bolder;
+    font-size: smaller;
 }
 
 @media  screen  and (max-width: 1280px ){
@@ -99,14 +100,31 @@
 }
 @media  screen  and (max-width: 1066px ){
     .testiText{
-       font-size: smaller;
+        font-size: smaller;
         margin-left: 0;
     }
     .testiUser{
         width: 100%;
     }
+    .testiRating{
+        width: 100%;
+    }
     .testiImage{
         width: 80%;
         
+    }
+    .testiinCard{
+        width: auto;
+    }
+}
+@media  screen and ( max-width: 800px ){
+    .testiCard{
+        width: 80%;
+    }
+    .testiIcon{
+        gap: 15px;
+    }
+    .testiinCard{
+        width: 80%;
     }
 }
