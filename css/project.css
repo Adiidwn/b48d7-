@@ -15,6 +15,9 @@
     -ms-user-select: none;
     user-select: none;
 }
+.icon{
+    background-color:lightgrey ;
+}
 
 .container input {
     position: absolute;

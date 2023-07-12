@@ -28,10 +28,10 @@ const submitProject = (event) =>{
     }
     // 
     // ICON CHECKER
-    let nodejsIcon = '<i class="fa-brands fa-node-js"></i>'
-    let reactjsIcon = '<i class="fa-brands fa-react"></i>'
-    let nextjsIcon = '<i class="fa-brands fa-jsfiddle"></i>'
-    let typescriptIcon = '<i class="fa-solid fa-scroll"></i>'
+    let nodejsIcon = '<i class="icon fa-brands fa-node-js"></i>'
+    let reactjsIcon = '<i class="icon fa-brands fa-react"></i>'
+    let nextjsIcon = '<i class="icon fa-brands fa-jsfiddle"></i>'
+    let typescriptIcon = '<i class="icon fa-solid fa-scroll"></i>'
 
     let iconnodeJs = ""
     let iconreactJS = ""
@@ -84,18 +84,8 @@ const submitProject = (event) =>{
     console.log("tahun : ",distanceYear)
     console.log("hari : ",distanceDay)
     
-    // if(distanceWeek < 4) {
-    //     distanceDuration= `durasi: ${distanceMonth} month `
-    // } else if(distanceWeek < 47) {
-    //     distanceDuration= `durasi: ${distanceYear} year `
-    // }
-   
    
 // 
-    
-   
-
-    
    
 // untuk membuat object file menjadi URL secara sementara, agar tampil
 myFile = URL.createObjectURL(myFile[0])
@@ -122,28 +112,28 @@ myFile = URL.createObjectURL(myFile[0])
 const renderSubmit = () =>{
     document.getElementById("contents").innerHTML = ''
     
-    for (let index = 0; index < dataProject.length; index++) {
+    for (let i = 0; i < dataProject.length; i++) {
         document.getElementById("contents").innerHTML += 
     `
     <div id="contents" class="cardProject">
     <!-- ISI PROJECT -->
     <div class="projectItem">
-    <img class="projectImage" src="${dataProject[index].myFile}" />
+    <img class="projectImage" src="${dataProject[i].myFile}" />
     <!-- IMAGES -->
-    <a href="" class="linkProject"> <div class="imageProject" >${dataProject[index].projectname}</div></a>
+    <a href="" class="linkProject"> <div class="imageProject" >${dataProject[i].projectname}</div></a>
     <!-- TITLE -->
-        <div class="dateProject">${dataProject[index].distanceDuration}
+        <div class="dateProject">${dataProject[i].distanceDuration}
         </div>
     <!-- DURASI -->
         <div class="contentProject">
-            ${dataProject[index].description}
+            ${dataProject[i].description}
         </div>
     <!-- ISI CONTENT -->
         <div class="iconProject">
-        <p>${dataProject[index].iconnodeJs} </p>
-        <p>${dataProject[index].iconreactJS} </p>
-        <p>${dataProject[index].iconnextJS} </p>
-        <p>${dataProject[index].icontypescript} </p>
+        <p>${dataProject[i].iconnodeJs} </p>
+        <p>${dataProject[i].iconreactJS} </p>
+        <p>${dataProject[i].iconnextJS} </p>
+        <p>${dataProject[i].icontypescript} </p>
         </div>
     <!-- ICON -->
         <div class="btnMother">
@@ -158,7 +148,7 @@ const renderSubmit = () =>{
 }
 
 let nodeJs = document.querySelector('.nodeJS')
-console.log(nodeJs)
+
 
 // setInterval(() => {
 //     renderBlog()
