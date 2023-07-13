@@ -1,42 +1,43 @@
-// testimonialsHTML(){
-//         
-// DATA
-const testiData = [
-{
-    image : "https://images.unsplash.com/photo-1616161560417-66d4db5892ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGFpfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
-    text : "Keren banget sih bang",
-    autors : "Adiwidiawan",
-    rating : 5,
-},
-{
-    image : "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YWl8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
-    text : "Gila sihh keceeh",
-    autors : "Frimawan",
-    rating : 4,
-},
-{
-    image : "https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
-    text : "Pecah paraah gilee",
-    autors : "Rispo",
-    rating : 5,
-},
-{
-    image : "https://pbs.twimg.com/media/FzNmxICacAA-o_d.jpg",
-    text : "gak ada kuasa",
-    autors : "filsuf",
-    rating : 1,
-}
-,
-{
-    image : "https://cdn.kibrispdr.org/data/596/gatau-males-mau-beli-truk-meme-4.webp   ",
-    text : "keren sih tapi...",
-    autors : "unknown",
-    rating : 3,
-}
-]
+// PROMISE new xhttp
 
-// ALL TESTIMONIALS
+const promise = new Promise((succes, failed) => {
+const xhttp = new XMLHttpRequest()
 
+    xhttp.open("GET", "https://api.npoint.io/3f0ad92df9800bb29817", true)
+//ONLOAD 
+    xhttp.onload = ()=> {
+        
+        if(xhttp.status === 200 ){ 
+            succes(JSON.parse(xhttp.response))
+        } else if(xhttp.status > 399){
+            failed("Data failed to get.")
+        }
+    }
+// ONERROR
+    xhttp.onerror = ()=>{
+        failed("Failed to enter.")
+    }
+// SEND
+    xhttp.send()
+})
+
+let testiData = []
+
+// ASYNC
+async function getData() {  
+    try { 
+        const responseData = await promise
+        console.log(responseData)
+        testiData = responseData
+        testimonialsAll()
+    
+    } catch (eror){
+        console.log(eror)
+    }
+}
+getData()
+
+// ALL DATA
 function testimonialsAll(){
     let testimonialsHTML = ""
 
@@ -57,8 +58,10 @@ function testimonialsAll(){
 })     
 document.getElementById("testimonials").innerHTML = testimonialsHTML
 }
-testimonialsAll()
-// FILTER
+
+
+
+// FILTERED DATA
 function FilterTestimonial(rate) {
     let filteredTestimonialHTML = ""
 
