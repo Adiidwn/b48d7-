@@ -6,9 +6,9 @@ const xhttp = new XMLHttpRequest()
     xhttp.open("GET", "https://api.npoint.io/3f0ad92df9800bb29817", true)
 //ONLOAD 
     xhttp.onload = ()=> {
-        
+    const dataApi = JSON.parse(xhttp.response)
         if(xhttp.status === 200 ){ 
-            succes(JSON.parse(xhttp.response))
+            succes(dataApi)
         } else if(xhttp.status > 399){
             failed("Data failed to get.")
         }
