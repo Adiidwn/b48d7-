@@ -82,7 +82,6 @@
 .imageProject{
     margin: 0; 
     background-color: lightgrey;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
     font-size: smaller;
     padding: 7px;
 
@@ -178,7 +177,6 @@
     margin-left: 300px; */
   }
   .h1myproject {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     height: 170px;
     display: flex;
     justify-content: center;

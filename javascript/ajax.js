@@ -3,7 +3,7 @@
 const promise = new Promise((succes, failed) => {
 const xhttp = new XMLHttpRequest()
 
-    xhttp.open("GET", "https://api.npoint.io/3f0ad92df9800bb29817", true)
+    xhttp.open("GET", "https://api.npoint.io/4640119b3c649d670b6a", true)
 //ONLOAD 
     xhttp.onload = ()=> {
     const dataApi = JSON.parse(xhttp.response)
@@ -23,7 +23,7 @@ const xhttp = new XMLHttpRequest()
     xhttp.send()
 })
 
-let testiData = []
+let testiData = ""
 
 // ASYNC
 async function getData() {  

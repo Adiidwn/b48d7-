@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Testimonials</title>
+    <link rel="icon" type="image/x-icon" href="images/dumbwayslogo.png">
     <link rel="stylesheet" href="css/allin.css">
     <link rel="stylesheet" href="css/all.css">
         <link rel="stylesheet" href="css/nav.css">
@@ -10,14 +12,13 @@
         <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
         <script src="https://kit.fontawesome.com/fa61d725ab.js" crossorigin="anonymous"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testimonials</title>
 </head>
 <body>
     <!-- NAVIGATION -->
     <div style="height: 5px;"></div>
     <nav class="topnav">
         <ul style="background-color: rgb(248, 244, 244);">
-            <li><img src="images/dumbwayslogo.png" class="dumbways"></li>
+            <li><a href="index.html"><img src="images/dumbwayslogo.png" class="dumbways"></a></li>
             <li class="hidden" >
                 <a href="index.html">Home</a></li>
             <li class="hidden"><a href="project1.html">My Project</a>
@@ -27,7 +28,7 @@
         </ul>
         
             <div class="bcontactMe hidden">
-                <a href="contact.html" style="background-color: black;color: azure;">CONTACT ME </a>
+                <a href="contact.html" class="bcontactMeNav">CONTACT ME </a>
                 
             </div>
             <div id="hamburgerClick" class="bcontactMe hide">
@@ -47,8 +48,9 @@
 <!-- TITLE -->
 <div class="testitop">
     <h1>My Testimonials</h1>
-    <h3>Rating By Star</h1>
+    
 <div class="testiIcon ">
+    <h3>Rating By Star :</h3>
         <button class="bottonStar" onclick="testimonialsAll()">All</button>
         <button class="bottonStar" onclick="FilterTestimonial(1)">1 <i class="fa-regular fa-star"></i></button>
         <button class="bottonStar" onclick="FilterTestimonial(2)">2 <i class="fa-regular fa-star"></i></button>

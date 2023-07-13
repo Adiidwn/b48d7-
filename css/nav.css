@@ -4,7 +4,7 @@ nav {
     height: 45px;
     overflow: hidden;
     justify-content: space-between;
-    
+    border-style: outset;
     
 }
 nav ul {
@@ -35,7 +35,7 @@ nav ul li a{
     align-items: center;
 }
 li a:hover {
-    background-color: orangered;
+    color: orangered;
     font-size: larger;
 }
 
@@ -45,13 +45,19 @@ li a:hover {
     margin-right: 40px;
     
 }
-.bcontactMe a{
-    
+.bcontactMeNav{
+    border-radius: 15px;
     background-color: black; 
-    color: rgb(217, 217, 228); 
+    color: white; 
     padding: 6px 20px; 
-    border-radius: 7px; 
+ 
     text-decoration: none;
+}
+.bcontactMeNav:hover{
+    background-color: orangered;
+    font-size: larger;
+    color: black;
+    font-weight: bold;
 }
 .dumbways{
     height: 23px;
@@ -77,6 +83,7 @@ li a:hover {
 @media  screen  and (max-width: 680px){
     nav ul {
         margin-left: 0;
+        gap: 9px;
     }
 }
 

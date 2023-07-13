@@ -12,16 +12,27 @@
         background-color: rgb(248, 244, 244);;
         box-shadow: 0px 0px 8mm ;
         border-radius: 7px;
+        border-style: inset;
+        border-width: 5px;
     }
     .welcomeCon{
-        margin-bottom: 13px;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        font-size: 52px;
+        font-family: 'Catamaran';
+        letter-spacing: 3px;   
+        font-weight: 900;                                     
+    }
+    .welcomeText{
+        font-size: 16px;
     }
     
     .images {
         position: absolute;
         right: 0;
         width: 400px;
-        
+        border-style: groove;
         border-radius: 5px;
         display: flex;
         background-color:rgb(248, 235, 235);;
@@ -57,6 +68,7 @@
         align-items: center;
         flex-direction: column; 
         background-color: rgb(248, 235, 235);;
+        margin-bottom: 7px;
     }
     h2 {
         font-family: cursive; 
@@ -78,6 +90,8 @@
         background-color: rgb(248, 244, 244);; 
         margin-left: 1%;
         height: 30px;
+        margin-bottom: -5px;
+        margin-top: 40px;
     }
     .bcontact{
         background-color: black; 
@@ -90,6 +104,9 @@
     }
     .bcontact:hover{
         font-size: larger;
+        background-color: orangered;
+        color: black;
+        font-weight: bold;
     } 
     .bdownload{
         color: black; 

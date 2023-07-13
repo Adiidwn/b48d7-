@@ -16,19 +16,24 @@
     color: white;
     border: 1px solid black;
     border-radius: 3px;
+    width: 41px;
 }
 
 .bottonStar:hover{
     
-    background-color: darkslategrey;
+    background-color: orangered;
+    color: black;
+    font-weight: bold;
     .fa-regular{
-        background-color: darkslategrey;
+        background-color: orangered;
+        color: black;
+        font-weight: bold;
     }
 }
 .testiIcon{
-    margin-top: 0px;
+    margin-top: 30px;
     display: flex;
-    gap: 40px;
+    gap: 20px;
     background-color: lightgrey;
     
 }
@@ -50,6 +55,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-style: inset;
+    border-width: 3px;
 }
 .testiImage{
     height: 65%;
