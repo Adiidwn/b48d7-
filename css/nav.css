@@ -7,6 +7,7 @@ nav {
     border-style: outset;
     
 }
+
 nav ul {
     display: flex;
     margin-left: 20px;
@@ -55,7 +56,6 @@ li a:hover {
 }
 .bcontactMeNav:hover{
     background-color: orangered;
-    font-size: larger;
     color: black;
     font-weight: bold;
 }
