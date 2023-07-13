@@ -8,7 +8,9 @@ const xhttp = new XMLHttpRequest()
     xhttp.onload = ()=> {
     const dataApi = JSON.parse(xhttp.response)
         if(xhttp.status === 200 ){ 
+            console.log("Data Acceptable.")
             succes(dataApi)
+            
         } else if(xhttp.status > 399){
             failed("Data failed to get.")
         }
