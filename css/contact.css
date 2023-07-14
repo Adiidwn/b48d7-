@@ -1,0 +1,12 @@
+.btn:hover{
+    color: orangered !important ;
+}
+.contactMain{
+    margin-top: 40px;
+    width: 45%;
+}
+@media (max-width: 991.98px) {
+    .contactMain{
+        width: 85%;
+    }
+}

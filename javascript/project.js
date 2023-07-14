@@ -115,33 +115,33 @@ const renderSubmit = () =>{
     for (let i = 0; i < dataProject.length; i++) {
         document.getElementById("contents").innerHTML += 
     `
-    <div id="contents" class="cardProject">
-    <!-- ISI PROJECT -->
-    <div class="projectItem">
-    <img class="projectImage" src="${dataProject[i].myFile}" />
-    <!-- IMAGES -->
-    <a href="" class="linkProject"> <div class="imageProject" >${dataProject[i].projectname}</div></a>
-    <!-- TITLE -->
-        <div class="dateProject">${dataProject[i].distanceDuration}
-        </div>
-    <!-- DURASI -->
-        <div class="contentProject">
+    <div class="grid-container">
+        <!-- ISI PROJECT -->
+        <div class="projectItemcontoh">
+            <img class="projectImage" src="${dataProject[i].myFile}" />
+        <!-- IMAGES -->
+        <a href="day1.html" class="linkProject"><div class="imageProject" >${dataProject[i].projectname}</div></a>
+        <!-- TITLE -->
+            <div class="dateProject">${dataProject[i].distanceDuration}</div>
+        <!-- DURASI -->
+            <div class="contentMyProject">
             ${dataProject[i].description}
-        </div>
-    <!-- ISI CONTENT -->
-        <div class="iconProject">
-        <p>${dataProject[i].iconnodeJs} </p>
-        <p>${dataProject[i].iconreactJS} </p>
-        <p>${dataProject[i].iconnextJS} </p>
-        <p>${dataProject[i].icontypescript} </p>
-        </div>
-    <!-- ICON -->
-        <div class="btnMother">
-            <div class="btnFather">
-                <button class="btn-edit" >Edit</button>
-                <button class="btn-delete">Delete</button>
             </div>
-    <!-- BUTTON -->
+        <!-- ISI CONTENT -->
+            <div class="iconProject1">
+            ${dataProject[i].iconnodeJs}
+            ${dataProject[i].iconreactJS}
+            ${dataProject[i].iconnextJS}
+            ${dataProject[i].icontypescript}
+            </div>
+        <!-- ICON -->
+            <div class="btnMother">
+                <div class="btnFather">
+                    <button class="btn-edit" >Edit</button>
+                    <button class="btn-delete">Delete</button>
+                </div>
+            </div>
+        </div>
     </div>
      `
     }

@@ -1,0 +1,41 @@
+.middle-gap{
+    height: 230px;
+   color: white;
+}
+.middle-gap2{
+    height: 50px;
+    background-color: #393e46;
+    color: #393e46;
+}
+.grid-itemP{
+    gap: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.contentMyProject{
+    display: flex;
+    width: 93%;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    background-color: lightgrey;
+    font-size: small;
+    height: 18%;
+}
+.myprojectLength{
+    margin-top: 50px;
+    width: 50%;
+}
+.iconProject1{
+    color: black;
+    margin-top: -30px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 15px;
+}
+@media (max-width: 991.98px) {
+    .myprojectLength{
+        width: 85%;
+    }
+}

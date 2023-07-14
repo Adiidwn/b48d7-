@@ -1,93 +1,267 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title> Hi ..</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" type="image/x-icon" href="images/dumbwayslogo.png">
-        <link rel="stylesheet" href="css/all.css">
-        <link rel="stylesheet" href="css/nav.css">
-        <link rel="stylesheet" href="css/day 2.css">
-        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-        <link rel="stylesheet" href="css/allin.css">
-        <link rel="stylesheet" href="project1.html">
-        <link rel="stylesheet" href="contact.html">
-        <script src="https://kit.fontawesome.com/fa61d725ab.js" crossorigin="anonymous"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://fonts.cdnfonts.com/css/elegant-2" rel="stylesheet">
-        <link href='https://fonts.googleapis.com/css?family=Catamaran' rel='stylesheet'>        
-    <style>
-        @import url('https://fonts.cdnfonts.com/css/elegant-2');
-    </style>
-</head>
-
-<body>
-<!-- NAV -->
-<div style="height: 5px;"></div>
-    <nav class="topnav">
-        <ul style="background-color: rgb(248, 244, 244);">
-            <li><a href="index.html"><img src="images/dumbwayslogo.png" class="dumbways"></a></li>
-            <li class="hidden" style="font-weight: bold;">
-                <a href="index.html">Home</a></li>
-            <li class="hidden"><a href="project1.html">My Project</a>
-            </li>
-            <li class="hidden"><a href="testimonials.html">Testimonials</a></li>
-        </ul>
-        
-            <div class="bcontactMe hidden">
-                <a href="contact.html" class="bcontactMeNav">CONTACT ME </a>
-                
-            </div>
-            <div id="hamburgerClick" class="bcontactMe hide">
-                <button onclick="openHmbg()">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-            </div>
-        
-    </nav>
-<div class="hmbgShow" id="hmbgShow">
-    <a style="background-color: darkslategrey;" href="index.html">Home</a>
-    <a href="project1.html">My Project</a>
-    <a href="contact.html">Contact Me</a>
-    <a href="testimonials.html">Testimonials</a>
-</div>
-<!-- CONTENT -->
-<div class="a">
-<!-- IMAGES -->
-    <div class="images">
-        <img  src="images/adi2.jpg"/>
-        <h3 class="font1">ADIWIDIAWAN </h3>
-        <p class="font2" >Fullstack Developer</p>
-    </div>    
-<div class="divmain">
-
-<!-- WELCOME -->        
-    <div class="welcome">
-            <h2 class="welcomeCon">
-            WELCOME TO MY WEB PROJECT
-            </h2>
-            
-            
-            <p class="welcomeText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum rerum voluptatibus eum quae error earum nam dolorem voluptates praesentium minima ipsa, at aliquam quidem in, porro facilis sequi maxime omnis. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam eaque dicta molestiae totam facere debitis cumque praesentium, repellendus id? Hic harum quibusdam doloribus  dolore accusantium aliquam tenetur labore? Quod. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora culpa vel, ducimus facere possimus expedita, deserunt architecto, est ea doloribus consectetur distinctio sit ullam assumenda porro placeat facilis. Ipsum, eligendi. Lorem  Asperiores, aperiam! </p>
-    </div>
-   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://kit.fontawesome.com/fa61d725ab.js" crossorigin="anonymous"></script>
+    <title> Web Project</title>
     
-<!-- button -->
-        <div class="button">
-            <a href="/" class="bcontact">contact</a>
-            
-            <a href="file/cv.pdf" class="bdownload">download CV <i class="fa-solid fa-download"></i></a>
+</head>
+<body>
+    <!-- NAV -->
+<!-- logo -->
+    <nav class=" navbar navbar-expand-lg navbar-light    rounded" style="background-color: #f2f2f2;">
+        <a class="navbar-brand ms-4" href="index.html" ><img style="height: 33px;" src="images/dumbwayslogo.png" class="dumbways"></a>
+<!-- Hamburger ICON -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="hamburgerClick" onclick="openHmbg()" >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+<!--Home  -->
+        <div class="m-1 collapse navbar-collapse justify-content-between navbarText " id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link homeNav" href="index.html">Home </a>
+            </li>
+<!-- Add Project -->
+            <li class="nav-item">
+              <a class="nav-link" href="project1.html">Add Project</a>
+            </li>
+<!-- Contact Me -->
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <button class="btn btn-dark  my-2 my-sm-0 me-3" type="submit"><a class="contactMe" href="contact.html">Contact Me</a></button>
+          </form>
         </div>
- <!-- ICON -->
-        
-        <p class="icon">
-                <a href="https://www.instagram.com/adiidwn/" class="iconlogo"><i class="fa-brands fa-instagram"></i></a>
-                <a href="/" class="iconlogo"><i class="fa-brands fa-twitter"></i></a>
-                <a href="https://discord.com/login" class="iconlogo"><i class="fa-brands fa-discord"></i></a>
-                <a href="https://github.com/Adiidwn" class="iconlogo"><i class="fa-brands fa-github"></i></a>
-            
-        </p>
+      </nav>
+      
+      <div class="hmbgShow" id="hmbgShow">
+        <a style="background-color: orangered; color: black; font-weight: bold;" href="index.html">Home</a>
+        <a href="project1.html">Add Project</a>
+        <a href="contact.html">Contact Me</a>
     </div>
+<!-- Main  -->
+
+<div class="a ">
+    <!-- IMAGES -->
+        <div class="images">
+            <img  src="images/adi2.jpg"/>
+            <h3 class="font1">ADIWIDIAWAN </h3>
+            <p class="font2" >Fullstack Developer</p>
+        </div>    
+    <div class="divmain">
+    
+    <!-- WELCOME -->        
+        <div class="welcome">
+                <h2 class="welcomeCon">
+                WELCOME TO MY WEB PROJECT
+                </h2>
+                
+                
+                <p class="welcomeText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum rerum voluptatibus eum quae error earum nam dolorem voluptates praesentium minima ipsa, at aliquam quidem in, porro facilis sequi maxime omnis. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam eaque dicta molestiae totam facere debitis cumque praesentium, repellendus id? Hic harum quibusdam doloribus  dolore accusantium aliquam tenetur labore? Quod. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora culpa vel, ducimus facere possimus expedita, deserunt architecto, est ea doloribus consectetur distinctio sit ullam assumenda porro placeat facilis. Ipsum, eligendi. Lorem  Asperiores, aperiam! </p>
+        </div>
+       
+        
+    <!-- button -->
+            <div class="button">
+                <a href="contact.html" class="bcontact bg-dark text-light">contact</a>
+                
+                <a href="file/cv.pdf" class="bdownload ">download CV <i class="fa-solid fa-download"></i></a>
+            </div>
+     <!-- ICON -->
+            
+            <p class="icon">
+                    <a href="https://www.instagram.com/adiidwn/" class="iconlogo"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="/" class="iconlogo"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://discord.com/login" class="iconlogo"><i class="fa-brands fa-discord"></i></a>
+                    <a href="https://github.com/Adiidwn" class="iconlogo"><i class="fa-brands fa-github"></i></a>
+                
+            </p>
+        </div>
+    </div>
+<!-- Next Page -->
+<div class="myProject">
+    <div style="background-color: #393e46; height: 50px;">.</div>
+<h1 class="h1myproject text-light">MY PROJECTS
+</h1>
+
+
+    
+
+<div id="contents" class="grid-item container">
+    <div class="grid-container">
+        <!-- ISI PROJECT -->
+        <div class="projectItemcontoh">
+            <img class="projectImage" src="./images/adi2.jpg" />
+        <!-- IMAGES -->
+        <a href="day1.html" class="linkProject"><div class="imageProject" >My Bio</div></a>
+        <!-- TITLE -->
+            <div class="dateProject">durasi 1 Day</div>
+        <!-- DURASI -->
+            <div class="contentProject">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima sit explicabo sapiente. Voluptas, rerum mollitia 
+            </div>
+        <!-- ISI CONTENT -->
+            <div class="iconProject">
+                <i class="fa-brands fa-node-js"></i>
+                <i class="fa-brands fa-react"></i>
+                <i class="fa-brands fa-jsfiddle"></i>
+                <i class="fa-solid fa-scroll"></i>
+            </div>
+        <!-- ICON -->
+            <div class="btnMother">
+                <div class="btnFather">
+                    <button class="btn-edit" >Edit</button>
+                    <button class="btn-delete">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid-container">
+        <!-- ISI PROJECT -->
+        <div class="projectItemcontoh">
+            <img class="projectImage" src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHByb2plY3R8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" />
+        <!-- IMAGES -->
+        <a href="day1.html" class="linkProject"><div class="imageProject" >Project - 01</div></a>
+        <!-- TITLE -->
+            <div class="dateProject">durasi 1 Day</div>
+        <!-- DURASI -->
+            <div class="contentProject">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima sit explicabo sapiente. Voluptas, rerum mollitia 
+            </div>
+        <!-- ISI CONTENT -->
+            <div class="iconProject">
+                <i class="fa-brands fa-node-js"></i>
+                <i class="fa-brands fa-react"></i>
+                <i class="fa-brands fa-jsfiddle"></i>
+                <i class="fa-solid fa-scroll"></i>
+            </div>
+        <!-- ICON -->
+            <div class="btnMother">
+                <div class="btnFather">
+                    <button class="btn-edit" >Edit</button>
+                    <button class="btn-delete">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid-container">
+        <!-- ISI PROJECT -->
+        <div class="projectItemcontoh">
+            <img class="projectImage" src="https://images.unsplash.com/photo-1595013694368-aab1b4f70dcd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHByb2plY3R8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" />
+        <!-- IMAGES -->
+        <a href="day1.html" class="linkProject"><div class="imageProject" >Project - 02</div></a>
+        <!-- TITLE -->
+            <div class="dateProject">durasi 1 Day</div>
+        <!-- DURASI -->
+            <div class="contentProject">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima sit explicabo sapiente. Voluptas, rerum mollitia 
+            </div>
+        <!-- ISI CONTENT -->
+            <div class="iconProject">
+                <i class="fa-brands fa-node-js"></i>
+                <i class="fa-brands fa-react"></i>
+                <i class="fa-brands fa-jsfiddle"></i>
+                <i class="fa-solid fa-scroll"></i>
+            </div>
+        <!-- ICON -->
+            <div class="btnMother">
+                <div class="btnFather">
+                    <button class="btn-edit" >Edit</button>
+                    <button class="btn-delete">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid-container">
+        <!-- ISI PROJECT -->
+        <div class="projectItemcontoh">
+            <img class="projectImage" src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2plY3R8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" />
+        <!-- IMAGES -->
+        <a href="day1.html" class="linkProject"><div class="imageProject" >Project - 03</div></a>
+        <!-- TITLE -->
+            <div class="dateProject">durasi 1 Day</div>
+        <!-- DURASI -->
+            <div class="contentProject">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima sit explicabo sapiente. Voluptas, rerum mollitia 
+            </div>
+        <!-- ISI CONTENT -->
+            <div class="iconProject">
+                <i class="fa-brands fa-node-js"></i>
+                <i class="fa-brands fa-react"></i>
+                <i class="fa-brands fa-jsfiddle"></i>
+                <i class="fa-solid fa-scroll"></i>
+            </div>
+        <!-- ICON -->
+            <div class="btnMother">
+                <div class="btnFather">
+                    <button class="btn-edit" >Edit</button>
+                    <button class="btn-delete">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid-container">
+        <!-- ISI PROJECT -->
+        <div class="projectItemcontoh">
+            <img class="projectImage" src="https://images.unsplash.com/photo-1586281380117-5a60ae2050cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHByb2plY3R8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" />
+        <!-- IMAGES -->
+        <a href="day1.html" class="linkProject"><div class="imageProject" >Project - 04</div></a>
+        <!-- TITLE -->
+            <div class="dateProject">durasi 1 Day</div>
+        <!-- DURASI -->
+            <div class="contentProject">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima sit explicabo sapiente. Voluptas, rerum mollitia 
+            </div>
+        <!-- ISI CONTENT -->
+            <div class="iconProject">
+                <i class="fa-brands fa-node-js"></i>
+                <i class="fa-brands fa-react"></i>
+                <i class="fa-brands fa-jsfiddle"></i>
+                <i class="fa-solid fa-scroll"></i>
+            </div>
+        <!-- ICON -->
+            <div class="btnMother">
+                <div class="btnFather">
+                    <button class="btn-edit" >Edit</button>
+                    <button class="btn-delete">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid-container">
+        <!-- ISI PROJECT -->
+        <div class="projectItemcontoh">
+            <img class="projectImage" src="https://media.istockphoto.com/id/1450667766/photo/from-vision-through-strategy-and-execution-to-success.webp?b=1&s=170667a&w=0&k=20&c=XMHCkr9U0Co8K9lZM__vFebGK2JOzNvjjPzuYLzpWxY=" />
+        <!-- IMAGES -->
+        <a href="day1.html" class="linkProject"><div class="imageProject" >Project - 05</div></a>
+        <!-- TITLE -->
+            <div class="dateProject">durasi 1 Day</div>
+        <!-- DURASI -->
+            <div class="contentProject">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima sit explicabo sapiente. Voluptas, rerum mollitia 
+            </div>
+        <!-- ISI CONTENT -->
+            <div class="iconProject">
+                <i class="fa-brands fa-node-js"></i>
+                <i class="fa-brands fa-react"></i>
+                <i class="fa-brands fa-jsfiddle"></i>
+                <i class="fa-solid fa-scroll"></i>
+            </div>
+        <!-- ICON -->
+            <div class="btnMother">
+                <div class="btnFather">
+                    <button class="btn-edit" >Edit</button>
+                    <button class="btn-delete">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>
-<script id="hmbgClose" src="javascript/hamburgerClick.js"></script>
+<script src="javascript/hamburgerClick.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 </html>

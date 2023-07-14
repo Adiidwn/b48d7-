@@ -15,8 +15,12 @@
     -ms-user-select: none;
     user-select: none;
 }
-.icon{
-    background-color:lightgrey ;
+.middle-gap{
+    height: 230px;
+   color: white;
+}
+.middle-gap2{
+    height: 50px;
 }
 
 .container input {
@@ -55,7 +59,8 @@
     background-color: lightgrey;
     border-radius: 7px;
     width: 290px;
-    height: 80%;
+    height: 430px;
+    justify-content: center;
 }
 .linkProject{
     color: black;
@@ -112,11 +117,8 @@
 .btnFather{
     display: flex;
     border-radius: 10px;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    background-color: lightgrey;
 }
+
 
 .btn-edit{
     border-radius: 10px;
@@ -149,7 +151,7 @@
     text-decoration: none;background-color: lightgrey;
     font-size: 28px;
     height: 0;
-    margin-bottom: 40px;
+    margin-bottom: 29%;
     display: flex;
     gap: 15px;
 }
@@ -164,17 +166,16 @@
     margin-top: 0px;
     width: 100%;
     height: 100%;
-    background-color: rgb(248, 244, 244);
+
 }
 .grid-item {
- 
-    background-color: rgb(248, 244, 244);
-    margin: 0;
+    justify-content: flex-start;
+    gap: 70px;
+    
+    margin: 50px;
     display: flex;
     flex-wrap: wrap;
-    /* width: 1445px;
-    margin-top: -560px;
-    margin-left: 300px; */
+
   }
   .h1myproject {
     height: 170px;
