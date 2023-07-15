@@ -1,4 +1,79 @@
-
+/* REVEAL */
+.reveal{
+    position: relative;
+    transform: translateY(150px);
+    opacity: 0;
+    transition: 1s all ease;
+  }
+  
+  .reveal.active{
+    transform: translateY(0);
+    opacity: 1;
+  }
+/* FADE IN */
+.fade-in-image {
+    animation: fadeIn 5s;
+    -webkit-animation: fadeIn 5s;
+    -moz-animation: fadeIn 5s;
+    -o-animation: fadeIn 5s;
+    -ms-animation: fadeIn 5s;
+  }
+  
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @-o-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @-ms-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  /* FADE UP */
+@keyframes fadeUp {
+    0%{
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+    }
+}
+/* FADEDOWN */
+@keyframes fadeDown {
+    0%{
+        opacity: 0;
+        transform: translateY(-30px) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+    }
+}
+.navbar-brand{
+    animation: fadeDown 1s;
+}
+.nav-link{
+    animation: fadeDown 1s;
+}
+.text-center{
+    animation: fadeDown 1s;
+}
 .navbarText{
     font-weight: bold;
 }
@@ -42,6 +117,9 @@
     text-decoration: none;
     font-weight: bold;
 }
+.btn{
+    animation: fadeDown 1s;
+}
 .contactMe:hover{
     color: black;
 }
@@ -53,6 +131,7 @@
     border-radius: 7px;
     border-style: inset;
     border-width: 5px;
+    
 }
 .images {
     position: absolute;
@@ -75,6 +154,7 @@
 }
 .welcomeText{
     font-size: 16px;
+    animation: fadeUp 0.5s;
 }
 .welcomeCon{
     display: flex;
@@ -83,7 +163,8 @@
     font-size: 52px;
     font-family: 'Catamaran';
     letter-spacing: 3px;   
-    font-weight: 900;                                     
+    font-weight: 900;  
+    animation: fadeUp 0.5s;                                   
 }
 .button{
     display: flex; 
@@ -125,6 +206,7 @@
     text-decoration: none;
     display: flex;
     align-items: center;
+    animation: fadeUp 0.5s;
 }
 .bcontact:hover{
     
@@ -143,6 +225,7 @@
     color: black; 
     text-decoration: none;
     background-color: rgb(248, 244, 244);
+    animation: fadeUp 0.5s;
 }
 .iconlogo:hover {
     font-size: larger;
@@ -154,6 +237,7 @@
     background-color: rgb(248, 244, 244);; 
     align-items: center;
     display: flex;
+    animation: fadeUp 0.5s;
 }
 .bdownload:hover {
     font-size: larger;
@@ -164,24 +248,28 @@
 .myProject{
     margin-top: 200px;
     background-color: #222831;
-
+    
 }
+
 .grid-item {
     gap: 50px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    
+    
   }
   .grid-container{
     display: flex;
     height: 430px;
+    
 }
 .h1myproject {
     height: 190px;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    animation: fadeUp 0,7s;
   }
 .projectItemcontoh{
     box-shadow: 0px 0px 10px;
@@ -193,6 +281,7 @@
     height: 100%;
     flex-direction: column;
     align-items: center;
+    animation: fadeUp 0,7s;
 }
 .projectItem{
     box-shadow: 0px 0px 10px;
@@ -255,6 +344,7 @@
     background-color: lightgrey;
     border-radius: 30px;
     object-fit: cover;
+    animation: fadeUp 0,7s;
 }
 .cardProject{
     margin-top: 0px;

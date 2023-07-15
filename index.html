@@ -12,7 +12,8 @@
 <body>
     <!-- NAV -->
 <!-- logo -->
-    <nav class=" navbar navbar-expand-lg navbar-light    rounded" style="background-color: #f2f2f2;">
+<div class="navAll">
+    <nav class=" navbar navbar-expand-lg navbar-light rounded " style="background-color: #f2f2f2;">
         <a class="navbar-brand ms-4" href="index.html" ><img style="height: 33px;" src="images/dumbwayslogo.png" class="dumbways"></a>
 <!-- Hamburger ICON -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="hamburgerClick" onclick="openHmbg()" >
@@ -35,7 +36,7 @@
           </form>
         </div>
       </nav>
-      
+    </div>     
       <div class="hmbgShow" id="hmbgShow">
         <a style="background-color: orangered; color: black; font-weight: bold;" href="index.html">Home</a>
         <a href="project1.html">Add Project</a>
@@ -45,7 +46,7 @@
 
 <div class="a ">
     <!-- IMAGES -->
-        <div class="images">
+        <div class="images fade-in-image">
             <img  src="images/adi2.jpg"/>
             <h3 class="font1">ADIWIDIAWAN </h3>
             <p class="font2" >Fullstack Developer</p>
@@ -81,7 +82,7 @@
         </div>
     </div>
 <!-- Next Page -->
-<div class="myProject">
+<div class="myProject ">
     <div style="background-color: #393e46; height: 50px;">.</div>
 <h1 class="h1myproject text-light">MY PROJECTS
 </h1>
@@ -89,8 +90,8 @@
 
     
 
-<div id="contents" class="grid-item container">
-    <div class="grid-container">
+<div id="contents" class="grid-item container ">
+    <div class="grid-container reveal">
         <!-- ISI PROJECT -->
         <div class="projectItemcontoh">
             <img class="projectImage" src="./images/adi2.jpg" />
@@ -118,7 +119,7 @@
             </div>
         </div>
     </div>
-    <div class="grid-container">
+    <div class="grid-container reveal">
         <!-- ISI PROJECT -->
         <div class="projectItemcontoh">
             <img class="projectImage" src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHByb2plY3R8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" />
@@ -146,7 +147,7 @@
             </div>
         </div>
     </div>
-    <div class="grid-container">
+    <div class="grid-container reveal">
         <!-- ISI PROJECT -->
         <div class="projectItemcontoh">
             <img class="projectImage" src="https://images.unsplash.com/photo-1595013694368-aab1b4f70dcd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHByb2plY3R8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" />
@@ -174,7 +175,7 @@
             </div>
         </div>
     </div>
-    <div class="grid-container">
+    <div class="grid-container reveal">
         <!-- ISI PROJECT -->
         <div class="projectItemcontoh">
             <img class="projectImage" src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2plY3R8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" />
@@ -202,7 +203,7 @@
             </div>
         </div>
     </div>
-    <div class="grid-container">
+    <div class="grid-container reveal">
         <!-- ISI PROJECT -->
         <div class="projectItemcontoh">
             <img class="projectImage" src="https://images.unsplash.com/photo-1586281380117-5a60ae2050cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHByb2plY3R8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" />
@@ -230,7 +231,7 @@
             </div>
         </div>
     </div>
-    <div class="grid-container">
+    <div class="grid-container reveal">
         <!-- ISI PROJECT -->
         <div class="projectItemcontoh">
             <img class="projectImage" src="https://media.istockphoto.com/id/1450667766/photo/from-vision-through-strategy-and-execution-to-success.webp?b=1&s=170667a&w=0&k=20&c=XMHCkr9U0Co8K9lZM__vFebGK2JOzNvjjPzuYLzpWxY=" />
@@ -262,6 +263,7 @@
 
 </div>
 <script src="javascript/hamburgerClick.js"></script>
+<script src="javascript/reveal.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 </html>
