@@ -72,7 +72,7 @@
     animation: fadeDown 1s;
 }
 .text-center{
-    animation: fadeDown 1s;
+    animation: fadeDown 1s !important;
 }
 .navbarText{
     font-weight: bold;
