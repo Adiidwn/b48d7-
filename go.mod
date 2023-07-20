@@ -1,4 +1,4 @@
-module main.go
+module day12
 
 go 1.20
 

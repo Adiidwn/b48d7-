@@ -14,7 +14,7 @@
 <!-- logo -->
 <div class="navAll">
     <nav class=" navbar navbar-expand-lg navbar-light rounded " style="background-color: #f2f2f2;">
-        <a class="navbar-brand ms-4" href="home" ><img style="height: 33px;" src="../assets/images/dumbwayslogo.png" class="dumbways"></a>
+        <a class="navbar-brand ms-4" href="/" ><img style="height: 33px;" src="../assets/images/dumbwayslogo.png" class="dumbways"></a>
 <!-- Hamburger ICON -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="hamburgerClick"  >
             <span class="navbar-toggler-icon"></span>
@@ -23,7 +23,7 @@
         <div class="m-1 collapse navbar-collapse justify-content-between navbarText " id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link homeNav" href="home">Home </a>
+              <a class="nav-link homeNav" href="/">Home </a>
             </li>
 <!-- Add Project -->
             <li class="nav-item">
@@ -31,7 +31,7 @@
             </li>
 <!-- Testimonials -->
             <li class="nav-item">
-             <a class="nav-link " href="Testimonials">Testimonials</a>
+             <a class="nav-link " href="testimonials">Testimonials</a>
             </li>
 <!-- Contact Me -->
           </ul>
@@ -90,177 +90,43 @@
 
     
 
-<div id="contents" class="grid-item container ">
+<div id="contents" class="grid-item  ">
+    {{ range $id, $project := .Project }}
+<!-- START -->
     <div class="grid-container reveal">
-        <!-- ISI PROJECT -->
+<!-- ISI PROJECT -->
         <div class="projectItemcontoh">
             <img class="projectImage" src="../assets/images/adi2.jpg" />
-        <!-- IMAGES -->
-        <a href="day1.html" class="linkProject"><div class="imageProject" >My Bio</div></a>
-        <!-- TITLE -->
-            <div class="dateProject">durasi 1 Day</div>
-        <!-- DURASI -->
+<!-- IMAGES -->
+        <a href="projectDetail/{{$id}}" class="linkProject"><div class="imageProject" >{{$project.ProjectName}}</div></a>
+<!-- TITLE -->
+            <div class="dateProject">{{$project.PostDate}}</div>
+<!-- DURASI -->
             <div class="contentProject">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima sit explicabo sapiente. Voluptas, rerum mollitia 
+                {{$project.Description}}
             </div>
-        <!-- ISI CONTENT -->
+<!-- ISI CONTENT -->
             <div class="iconProject">
                 <i class="fa-brands fa-node-js"></i>
                 <i class="fa-brands fa-react"></i>
                 <i class="fa-brands fa-jsfiddle"></i>
                 <i class="fa-solid fa-scroll"></i>
             </div>
-        <!-- ICON -->
-            <div class="btnMother">
-                <div class="btnFather">
-                    <button class="btn-edit" >Edit</button>
-                    <button class="btn-delete">Delete</button>
+<!-- ICON -->
+            <div class="btnMother ">
+                <div class="btnFather w-25">
+                    <form  action="/updateProject/{{$id}}" method="get" >
+                    <button class="btn-edit w-100" >Edit</button>
+                    </form>
+                    <form  action="/deletemyProject/{{$id}}" method="post">
+                    <button class="btn-delete w-100">Delete</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    <div class="grid-container reveal">
-        <!-- ISI PROJECT -->
-        <div class="projectItemcontoh">
-            <img class="projectImage" src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHByb2plY3R8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" />
-        <!-- IMAGES -->
-        <a href="day1.html" class="linkProject"><div class="imageProject" >Project - 01</div></a>
-        <!-- TITLE -->
-            <div class="dateProject">durasi 1 Day</div>
-        <!-- DURASI -->
-            <div class="contentProject">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima sit explicabo sapiente. Voluptas, rerum mollitia 
-            </div>
-        <!-- ISI CONTENT -->
-            <div class="iconProject">
-                <i class="fa-brands fa-node-js"></i>
-                <i class="fa-brands fa-react"></i>
-                <i class="fa-brands fa-jsfiddle"></i>
-                <i class="fa-solid fa-scroll"></i>
-            </div>
-        <!-- ICON -->
-            <div class="btnMother">
-                <div class="btnFather">
-                    <button class="btn-edit" >Edit</button>
-                    <button class="btn-delete">Delete</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="grid-container reveal">
-        <!-- ISI PROJECT -->
-        <div class="projectItemcontoh">
-            <img class="projectImage" src="https://images.unsplash.com/photo-1595013694368-aab1b4f70dcd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHByb2plY3R8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" />
-        <!-- IMAGES -->
-        <a href="day1.html" class="linkProject"><div class="imageProject" >Project - 02</div></a>
-        <!-- TITLE -->
-            <div class="dateProject">durasi 1 Day</div>
-        <!-- DURASI -->
-            <div class="contentProject">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima sit explicabo sapiente. Voluptas, rerum mollitia 
-            </div>
-        <!-- ISI CONTENT -->
-            <div class="iconProject">
-                <i class="fa-brands fa-node-js"></i>
-                <i class="fa-brands fa-react"></i>
-                <i class="fa-brands fa-jsfiddle"></i>
-                <i class="fa-solid fa-scroll"></i>
-            </div>
-        <!-- ICON -->
-            <div class="btnMother">
-                <div class="btnFather">
-                    <button class="btn-edit" >Edit</button>
-                    <button class="btn-delete">Delete</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="grid-container reveal">
-        <!-- ISI PROJECT -->
-        <div class="projectItemcontoh">
-            <img class="projectImage" src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2plY3R8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" />
-        <!-- IMAGES -->
-        <a href="day1.html" class="linkProject"><div class="imageProject" >Project - 03</div></a>
-        <!-- TITLE -->
-            <div class="dateProject">durasi 1 Day</div>
-        <!-- DURASI -->
-            <div class="contentProject">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima sit explicabo sapiente. Voluptas, rerum mollitia 
-            </div>
-        <!-- ISI CONTENT -->
-            <div class="iconProject">
-                <i class="fa-brands fa-node-js"></i>
-                <i class="fa-brands fa-react"></i>
-                <i class="fa-brands fa-jsfiddle"></i>
-                <i class="fa-solid fa-scroll"></i>
-            </div>
-        <!-- ICON -->
-            <div class="btnMother">
-                <div class="btnFather">
-                    <button class="btn-edit" >Edit</button>
-                    <button class="btn-delete">Delete</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="grid-container reveal">
-        <!-- ISI PROJECT -->
-        <div class="projectItemcontoh">
-            <img class="projectImage" src="https://images.unsplash.com/photo-1586281380117-5a60ae2050cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHByb2plY3R8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" />
-        <!-- IMAGES -->
-        <a href="day1.html" class="linkProject"><div class="imageProject" >Project - 04</div></a>
-        <!-- TITLE -->
-            <div class="dateProject">durasi 1 Day</div>
-        <!-- DURASI -->
-            <div class="contentProject">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima sit explicabo sapiente. Voluptas, rerum mollitia 
-            </div>
-        <!-- ISI CONTENT -->
-            <div class="iconProject">
-                <i class="fa-brands fa-node-js"></i>
-                <i class="fa-brands fa-react"></i>
-                <i class="fa-brands fa-jsfiddle"></i>
-                <i class="fa-solid fa-scroll"></i>
-            </div>
-        <!-- ICON -->
-            <div class="btnMother">
-                <div class="btnFather">
-                    <button class="btn-edit" >Edit</button>
-                    <button class="btn-delete">Delete</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="grid-container reveal">
-        <!-- ISI PROJECT -->
-        <div class="projectItemcontoh">
-            <img class="projectImage" src="https://media.istockphoto.com/id/1450667766/photo/from-vision-through-strategy-and-execution-to-success.webp?b=1&s=170667a&w=0&k=20&c=XMHCkr9U0Co8K9lZM__vFebGK2JOzNvjjPzuYLzpWxY=" />
-        <!-- IMAGES -->
-        <a href="day1.html" class="linkProject"><div class="imageProject" >Project - 05</div></a>
-        <!-- TITLE -->
-            <div class="dateProject">durasi 1 Day</div>
-        <!-- DURASI -->
-            <div class="contentProject">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima sit explicabo sapiente. Voluptas, rerum mollitia 
-            </div>
-        <!-- ISI CONTENT -->
-            <div class="iconProject">
-                <i class="fa-brands fa-node-js"></i>
-                <i class="fa-brands fa-react"></i>
-                <i class="fa-brands fa-jsfiddle"></i>
-                <i class="fa-solid fa-scroll"></i>
-            </div>
-        <!-- ICON -->
-            <div class="btnMother">
-                <div class="btnFather">
-                    <button class="btn-edit" >Edit</button>
-                    <button class="btn-delete">Delete</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
+<!--END -->
+{{end}}
 </div>
 
 <script src="../assets/javascript/reveal.js"></script>
