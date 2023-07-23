@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"net/http"
 	"strconv"
+	"time"
 	conect "vodlab/com/connection"
 
 	"github.com/labstack/echo/v4"
@@ -15,11 +16,15 @@ type Project struct {
 	Id           int
 	Author       string
 	ProjectName  string
-	Duration     int
-	StartDate    any
-	EndDate      any
+	Durations    string
+	StartDate    time.Time
+	EndDate      time.Time
 	Description  string
 	Technologies []string
+	ReactJs      bool
+	Golang       bool
+	NodeJs       bool
+	Javascipt    bool
 	Image        string
 }
 
@@ -70,11 +75,26 @@ func home(x echo.Context) error {
 	var resultProject []Project
 	for dataProject.Next() {
 		each := Project{}
+
 		dataProject.Scan(&each.Id, &each.ProjectName, &each.StartDate, &each.EndDate, &each.Description, &each.Technologies, &each.Image)
 		if dataerror != nil {
 			return x.JSON(500, err.Error())
 		}
 		each.Author = "Adiwidiawan"
+
+		each.Durations = Duration(each.StartDate, each.EndDate)
+		if checkValue(each.Technologies, "React Js") {
+			each.ReactJs = true
+		}
+		if checkValue(each.Technologies, "Golang") {
+			each.Golang = true
+		}
+		if checkValue(each.Technologies, "Node Js") {
+			each.NodeJs = true
+		}
+		if checkValue(each.Technologies, "Javascript") {
+			each.Javascipt = true
+		}
 		// t1 := each.StartDate
 		// t2 := each.EndDate
 		// diff:=t1.Sub(t2)
@@ -89,8 +109,24 @@ func home(x echo.Context) error {
 	return tmplate.Execute(x.Response(), data)
 }
 
-func printf(t1, t2 any) {
-	panic("unimplemented")
+func Duration(StartDate time.Time, EndDate time.Time) string {
+
+	diff := EndDate.Sub(StartDate)
+	day := int(diff.Hours() / 24)
+	week := day / 7
+	month := day / 30
+	year := month / 12
+	if day < 7 {
+		return strconv.Itoa(day) + "day"
+	}
+	if week < 4 {
+		return strconv.Itoa(week) + "week"
+	}
+	if month < 4 {
+		return strconv.Itoa(month) + "month"
+	}
+	return strconv.Itoa(year) + "year"
+
 }
 
 func contact(x echo.Context) error {
@@ -138,6 +174,7 @@ func projectDetail(c echo.Context) error {
 				Id:           idInt,
 				Author:       data.Author,
 				ProjectName:  data.ProjectName,
+				Durations:    data.Durations,
 				StartDate:    data.StartDate,
 				EndDate:      data.EndDate,
 				Description:  data.Description,
@@ -164,13 +201,14 @@ func addmyProject(c echo.Context) error {
 	checklis2 := c.FormValue("checklis2")
 	checklis3 := c.FormValue("checklis3")
 	checklis4 := c.FormValue("checklis4")
-	StartDatee, _ := strconv.Atoi(StartDate)
-	EndDatee, _ := strconv.Atoi(EndDate)
+	StartDatee, _ := time.Parse("2006-01-02", StartDate)
+	EndDatee, _ := time.Parse("2006-01-02", EndDate)
 
 	newProject := Project{
 		Id:           0,
 		Author:       "Adiwidiawan",
 		ProjectName:  projectName,
+		Durations:    Duration(StartDatee, EndDatee),
 		StartDate:    StartDatee,
 		EndDate:      EndDatee,
 		Description:  description,
@@ -265,4 +303,12 @@ func updatedProject(x echo.Context) error {
 	dataProject[Id] = UpdatedProject
 
 	return x.Redirect(http.StatusMovedPermanently, "/")
+}
+func checkValue(Project []string, checked string) bool {
+	for _, data := range Project {
+		if data == checked {
+			return true
+		}
+	}
+	return false
 }

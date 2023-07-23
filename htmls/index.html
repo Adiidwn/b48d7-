@@ -96,21 +96,29 @@
     <div class="grid-container reveal">
 <!-- ISI PROJECT -->
         <div class="projectItemcontoh">
-            <img class="projectImage" src="../assets/images/adi2.jpg" />
+            <img class="projectImage" src="/assets/images/{{$project.Image}}" />
 <!-- IMAGES -->
         <a href="projectDetail/{{$id}}" class="linkProject"><div class="imageProject" >{{$project.ProjectName}}</div></a>
 <!-- TITLE -->
-            <div class="dateProject">StartD: {{$project.StartDate}} EndD: {{$project.EndDate}}</div>
+            <div class="dateProject">Duration: {{$project.Durations}}</div>
 <!-- DURASI -->
             <div class="contentProject">
                 {{$project.Description}}
             </div>
 <!-- ISI CONTENT -->
             <div class="iconProject">
+                {{if $project.NodeJs}}
                 <i class="fa-brands fa-node-js"></i>
+                {{end}}
+                {{if $project.ReactJs}}
                 <i class="fa-brands fa-react"></i>
+                {{end}}
+                {{if $project.Golang}}
                 <i class="fa-brands fa-jsfiddle"></i>
+                {{end}}
+                {{if $project.Javascipt}}
                 <i class="fa-solid fa-scroll"></i>
+                {{end}}
             </div>
 <!-- ICON -->
             <div class="btnMother ">
