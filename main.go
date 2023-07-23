@@ -1,31 +1,40 @@
 package main
 
 import (
+	"context"
 	"html/template"
 	"net/http"
 	"strconv"
+	conect "vodlab/com/connection"
 
 	"github.com/labstack/echo/v4"
 )
 
 type Project struct {
-	ProjectName string
-	Description string
-	Author      string
-	PostDate    string
+	Id           int
+	Author       string
+	ProjectName  string
+	StartDate    any
+	EndDate      any
+	Description  string
+	Technologies []string
+	Image        string
 }
 
 var dataProject = []Project{
-	{
-		ProjectName: "Project 1",
-		Description: "ini Project 1",
-		Author:      "Adiwidiawan",
-		PostDate:    "20July2023",
-	},
+	// {
+	// 	Author:       "Adiwidiawan",
+	// 	ProjectName:  "Project 1",
+	// 	StartDate:    "20July2023",
+	// 	EndDate:      "21July2024",
+	// 	Description:  "ini Project 1",
+	// 	Technologies: "Javascipt , Node Js",
+	// },
 }
 
 func main() {
 	e := echo.New()
+	conect.ConectDatabase()
 
 	e.Static("/assets", "assets")
 
@@ -36,8 +45,8 @@ func main() {
 	e.GET("/projectDetail/:id", projectDetail)
 	e.POST("/addmyProject", addmyProject)
 	e.POST("/deletemyProject/:id", deletemyProject)
-	e.GET("/updateProject/:id", updateProject)
-	e.POST("/updatedProject", updatedProject)
+	e.GET("/updateProject/:id", editProject)
+	e.POST("/updatedProject/:id", updatedProject)
 
 	e.Logger.Fatal(e.Start("localhost:666"))
 }
@@ -49,9 +58,29 @@ func home(x echo.Context) error {
 	if err != nil {
 		return x.JSON(500, err.Error())
 	}
-	data := map[string]interface{}{
-		"Project": dataProject,
+
+	dataProject, dataerror := conect.Conn.Query(context.Background(), "SELECT * FROM tb_projects")
+
+	if dataerror != nil {
+		return x.JSON(500, err.Error())
 	}
+
+	var resultProject []Project
+	for dataProject.Next() {
+		each := Project{}
+		dataProject.Scan(&each.Id, &each.ProjectName, &each.StartDate, &each.EndDate, &each.Description, &each.Technologies, &each.Image)
+		if dataerror != nil {
+			return x.JSON(500, err.Error())
+		}
+		each.Author = "Adiwidiawan"
+
+		resultProject = append(resultProject, each)
+	}
+
+	data := map[string]interface{}{
+		"Project": resultProject,
+	}
+	println(resultProject)
 	return tmplate.Execute(x.Response(), data)
 }
 
@@ -97,10 +126,14 @@ func projectDetail(c echo.Context) error {
 	for index, data := range dataProject {
 		if index == idInt {
 			projectDetail = Project{
-				ProjectName: data.ProjectName,
-				Description: data.Description,
-				Author:      data.Author,
-				PostDate:    data.PostDate,
+				Id:           idInt,
+				Author:       data.Author,
+				ProjectName:  data.ProjectName,
+				StartDate:    data.StartDate,
+				EndDate:      data.EndDate,
+				Description:  data.Description,
+				Technologies: data.Technologies,
+				Image:        data.Image,
 			}
 		}
 	}
@@ -116,18 +149,24 @@ func projectDetail(c echo.Context) error {
 func addmyProject(c echo.Context) error {
 	projectName := c.FormValue("projectName")
 	description := c.FormValue("description")
-	// StartDate := c.FormValue("startdate")
-	// EndDate := c.FormValue("enddate")
-	// checklis1 := c.FormValue("checklis1")
-	// checklis2 := c.FormValue("checklis2")
-	// checklis3 := c.FormValue("checklis3")
-	// checklis4 := c.FormValue("checklis4")
+	StartDate := c.FormValue("startdate")
+	EndDate := c.FormValue("enddate")
+	checklis1 := c.FormValue("checklis1")
+	checklis2 := c.FormValue("checklis2")
+	checklis3 := c.FormValue("checklis3")
+	checklis4 := c.FormValue("checklis4")
+	StartDatee, _ := strconv.Atoi(StartDate)
+	EndDatee, _ := strconv.Atoi(EndDate)
 
 	newProject := Project{
-		ProjectName: projectName,
-		Description: description,
-		Author:      "Adiwidiawan",
-		PostDate:    "27 July 2023",
+		Id:           0,
+		Author:       "Adiwidiawan",
+		ProjectName:  projectName,
+		StartDate:    StartDatee,
+		EndDate:      EndDatee,
+		Description:  description,
+		Technologies: []string{checklis1, checklis2, checklis3, checklis4},
+		Image:        "adi.jpg",
 	}
 	dataProject = append(dataProject, newProject)
 	return c.Redirect(http.StatusMovedPermanently, "/")
@@ -151,45 +190,70 @@ func deletemyProject(c echo.Context) error {
 	return c.Redirect(http.StatusMovedPermanently, "/")
 }
 
-func updateProject(x echo.Context) error {
-	tmplate, _ := template.ParseFiles("htmls/updateProject.html")
+func newFunction(resultProject []Project) {
+	resultProject = dataProject
+}
+
+func editProject(x echo.Context) error {
 	id := x.Param("id")
 	Id, _ := strconv.Atoi(id)
-	projectName := x.FormValue("projectName")
-	description := x.FormValue("description")
 
-	UpdatedProject := Project{
-		ProjectName: projectName,
-		Description: description,
-		Author:      "Adiwidiawan",
-		PostDate:    "27 July 2023",
-	}
+	ProjectEdit := Project{}
 
 	for index, data := range dataProject {
 		if index == Id {
-			UpdatedProject = Project{
-				ProjectName: data.ProjectName,
-				Description: data.Description,
-				Author:      data.Author,
-				PostDate:    data.PostDate,
+			ProjectEdit = Project{
+				Id:           Id,
+				Author:       data.Author,
+				ProjectName:  data.ProjectName,
+				StartDate:    data.StartDate,
+				EndDate:      data.EndDate,
+				Description:  data.Description,
+				Technologies: data.Technologies,
+				Image:        data.Image,
 			}
 		}
 	}
+	data := map[string]interface{}{
+		"Project": ProjectEdit,
+		"Id":      id,
+	}
 
-	dataProject = append(dataProject[:Id], UpdatedProject)
+	tmpl, err := template.ParseFiles("htmls/updateProject.html")
 
-	return tmplate.Execute(x.Response(), nil)
+	if err != nil {
+		return x.JSON(500, err.Error())
+	}
+
+	return tmpl.Execute(x.Response(), data)
 }
+
 func updatedProject(x echo.Context) error {
+
+	id := x.Param("id")
+	Id, _ := strconv.Atoi(id)
+
+	projectName := x.FormValue("projectName")
+	description := x.FormValue("description")
+	// StartDate := x.FormValue("startdate")
+	// EndDate := x.FormValue("enddate")
+	checklis1 := x.FormValue("checklis1")
+	checklis2 := x.FormValue("checklis2")
+	checklis3 := x.FormValue("checklis3")
+	checklis4 := x.FormValue("checklis4")
+
+	UpdatedProject := Project{
+		Id:          Id,
+		Author:      "Adiwidiawan",
+		ProjectName: projectName,
+		// StartDate:    StartDate,
+		// EndDate:      EndDate,
+		Description:  description,
+		Technologies: []string{checklis1, checklis2, checklis3, checklis4},
+		Image:        "adi.jpg",
+	}
+
+	dataProject[Id] = UpdatedProject
 
 	return x.Redirect(http.StatusMovedPermanently, "/")
 }
-
-// StartDate := c.FormValue("startdate")
-// EndDate := c.FormValue("enddate")
-// checklis1 := c.FormValue("checklis1")
-// checklis2 := c.FormValue("checklis2")
-// checklis3 := c.FormValue("checklis3")
-// checklis4 := c.FormValue("checklis4")
-
-// return c.Redirect(http.StatusMovedPermanently, "/")
