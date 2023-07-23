@@ -66,17 +66,17 @@ func home(x echo.Context) error {
 		return x.JSON(500, err.Error())
 	}
 
-	dataProject, dataerror := conect.Conn.Query(context.Background(), "SELECT * FROM tb_projects")
+	data1, dataerror := conect.Conn.Query(context.Background(), "SELECT * FROM tb_projects")
 
 	if dataerror != nil {
 		return x.JSON(500, err.Error())
 	}
 
-	var resultProject []Project
-	for dataProject.Next() {
-		each := Project{}
+	dataProject = []Project{}
+	for data1.Next() {
+		var each = Project{}
 
-		dataProject.Scan(&each.Id, &each.ProjectName, &each.StartDate, &each.EndDate, &each.Description, &each.Technologies, &each.Image)
+		data1.Scan(&each.Id, &each.ProjectName, &each.StartDate, &each.EndDate, &each.Description, &each.Technologies, &each.Image)
 		if dataerror != nil {
 			return x.JSON(500, err.Error())
 		}
@@ -99,13 +99,13 @@ func home(x echo.Context) error {
 		// t2 := each.EndDate
 		// diff:=t1.Sub(t2)
 		fmt.Println(each.StartDate)
-		resultProject = append(resultProject, each)
+		dataProject = append(dataProject, each)
 	}
 
 	data := map[string]interface{}{
-		"Project": resultProject,
+		"Project": dataProject,
 	}
-	println(resultProject)
+	println(dataProject)
 	return tmplate.Execute(x.Response(), data)
 }
 
@@ -172,21 +172,27 @@ func projectDetail(c echo.Context) error {
 		if index == idInt {
 			projectDetail = Project{
 				Id:           idInt,
-				Author:       data.Author,
+				Author:       "Adiwidiawan",
 				ProjectName:  data.ProjectName,
 				Durations:    data.Durations,
 				StartDate:    data.StartDate,
 				EndDate:      data.EndDate,
 				Description:  data.Description,
 				Technologies: data.Technologies,
+				ReactJs:      data.ReactJs,
+				Golang:       data.Golang,
+				NodeJs:       data.NodeJs,
+				Javascipt:    data.Javascipt,
 				Image:        data.Image,
 			}
 		}
 	}
 
 	data := map[string]interface{}{
-		"Project": projectDetail,
-		"Id":      id,
+		"Project":    projectDetail,
+		"Id":         id,
+		"startDateS": projectDetail.StartDate.Format("2006-01-02"),
+		"endDateS":   projectDetail.EndDate.Format("2006-01-02"),
 	}
 
 	return tmpl.Execute(c.Response(), data)

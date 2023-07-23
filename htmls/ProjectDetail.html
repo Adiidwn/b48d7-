@@ -46,15 +46,34 @@
     <div class="mt-5 d-flex ">
         <div class="w-100  border-top">
           <h1>{{ .Project.ProjectName }}</h1>
-          <div class="d-flex justify-content-end">{{ .Project.StartDate }} - {{ .Project.EndDate }} | {{ .Project.Author }}</div>
-          <img class="w-25 h-75"  src="/assets/images/dumbwayslogo.png" alt="detail" />
-          <div class="border-bottom mt-3">
+          <div class="d-flex justify-content-end">Duration : {{ .Project.Durations }} | {{ .startDateS }} - {{ .endDateS }}  | {{ .Project.Author }}</div>
+          <div class="projectItemcontoh w-25 h-50">
+          <img class="projectImage w-100 h-75 "  src="/assets/images/{{.Project.Image}}" alt="detail" />
           <p>
             ID : {{ .Id }}
-          </p>
-          <p>
+          </p >
+          <div class="h3">
+          {{if .Project.NodeJs}}
+                <i class="fa-brands fa-node-js"></i>
+                {{end}}
+        
+                {{if .Project.ReactJs}}
+                <i class="fa-brands fa-react"></i>
+                {{end}}
+          
+                {{if .Project.Golang}}
+                <i class="fa-brands fa-jsfiddle"></i>
+                {{end}}
+           
+                {{if .Project.Javascipt}}
+                <i class="fa-solid fa-scroll"></i>
+                {{end}}
+        </div>
+          <div class="border-bottom mt-3">
+         
+          <div class="h5 mt-5">
             {{ .Project.Description }}
-          </p>
+          </div>
           </div>
         </div>
       </div>
