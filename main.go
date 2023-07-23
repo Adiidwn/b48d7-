@@ -205,7 +205,7 @@ func addmyProject(c echo.Context) error {
 	EndDatee, _ := time.Parse("2006-01-02", EndDate)
 
 	newProject := Project{
-		Id:           0,
+
 		Author:       "Adiwidiawan",
 		ProjectName:  projectName,
 		Durations:    Duration(StartDatee, EndDatee),
@@ -304,8 +304,8 @@ func updatedProject(x echo.Context) error {
 
 	return x.Redirect(http.StatusMovedPermanently, "/")
 }
-func checkValue(Project []string, checked string) bool {
-	for _, data := range Project {
+func checkValue(x []string, checked string) bool {
+	for _, data := range x {
 		if data == checked {
 			return true
 		}
