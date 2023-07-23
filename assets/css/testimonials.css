@@ -74,6 +74,9 @@
     border-width: 3px;
 
 }
+.testiCard:hover{
+    width: 20%;
+}
 .testiImage{
     height: 65%;
     width: 90%;
