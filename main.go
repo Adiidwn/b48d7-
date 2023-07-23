@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"html/template"
 	"net/http"
 	"strconv"
@@ -14,6 +15,7 @@ type Project struct {
 	Id           int
 	Author       string
 	ProjectName  string
+	Duration     int
 	StartDate    any
 	EndDate      any
 	Description  string
@@ -73,7 +75,10 @@ func home(x echo.Context) error {
 			return x.JSON(500, err.Error())
 		}
 		each.Author = "Adiwidiawan"
-
+		// t1 := each.StartDate
+		// t2 := each.EndDate
+		// diff:=t1.Sub(t2)
+		fmt.Println(each.StartDate)
 		resultProject = append(resultProject, each)
 	}
 
@@ -82,6 +87,10 @@ func home(x echo.Context) error {
 	}
 	println(resultProject)
 	return tmplate.Execute(x.Response(), data)
+}
+
+func printf(t1, t2 any) {
+	panic("unimplemented")
 }
 
 func contact(x echo.Context) error {
