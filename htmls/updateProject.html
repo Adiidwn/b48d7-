@@ -30,7 +30,7 @@
         </li>
 <!-- Add Project -->
         <li class="nav-item">
-          <a class="nav-link homeNav" href="addProject">Add Project</a>
+          <a class="nav-link " href="addProject">Add Project</a>
         </li>
 <!-- TEstimonials -->
         <li class="nav-item">
@@ -53,26 +53,26 @@
 <h1 class="text-center mt-5 ">UPDATE PROJECT</h1>
 
 
-<form class="myprojectLength  container-fluid  " action="/addmyProject" method="POST" >
+<form class="myprojectLength  container-fluid  " action="/updatedProject/{{.Id}}" method="POST" >
     <div class="h6">
       <label class="mb-2" for="projectname" >Project Name</label>
-      <input type="text" class="form-control" id="projectname" aria-describedby="" placeholder="Enter project name" name="projectName">
+      <input type="text" class="form-control" id="projectname" aria-describedby="" placeholder="Enter project name" name="projectName" value=" {{ .Project.ProjectName }}">
     </div>
 <!-- DATES -->
     <div class="d-flex justify-content-around  ">
         <div class="w-50 mt-2 h6">
           <label class="mb-2" for="startdate">Start Date</label>
-          <input type="date" class="form-control" id="startdate" name="startdate" aria-describedby="emailHelp" >
+          <input type="date" class="form-control" id="startdate" name="startdate" aria-describedby="emailHelp" value=" {{ .Project.StartDate }}">
         </div>
         <div class="w-50 mt-2 h6">
           <label class="mb-2" for="enddate">End Date</label>
-          <input type="date" class="form-control" id="enddate" name="enddate" aria-describedby="emailHelp" >
+          <input type="date" class="form-control" id="enddate" name="enddate" aria-describedby="emailHelp" value=" {{ .Project.EndDate }}">
         </div>
     </div>
 <!-- Description -->
     <div class="mt-2 h6">
         <label class="mb-2" for="description" class="form-label">Description</label>
-        <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+        <textarea class="form-control" name="description" id="description" rows="3" value=" {{ .Project.Description }}"></textarea>
     </div>
 <!-- ICON TECNOLOGIES -->
         <div class="mt-2 h6">
