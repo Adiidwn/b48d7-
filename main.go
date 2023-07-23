@@ -10,26 +10,58 @@ import (
 )
 
 type Project struct {
-	Author       string
-	ProjectName  string
-	Durations    string
-	StartDate    string
-	EndDate      string
-	Description  string
-	Technologies []string
-	Image        string
+	Author      string
+	ProjectName string
+	Durations   string
+	StartDate   string
+	EndDate     string
+	Description string
+	NodeJs      bool
+	ReactJs     bool
+	Golang      bool
+	Javascript  bool
+	Image       string
 }
 
 var dataProject = []Project{
 	{
-		Author:       "Adiwidiawan",
-		ProjectName:  "Project 1",
-		Durations:    Duration("2020-01-15", "2020-02-15"),
-		StartDate:    "2020-01-15",
-		EndDate:      "2020-02-15",
-		Description:  "HALOO GUYSSSSS",
-		Technologies: []string{"Golang"},
-		Image:        "adi.jpg",
+		Author:      "Adiwidiawan",
+		ProjectName: "Project 1",
+		Durations:   Duration("2020-01-15", "2020-02-15"),
+		StartDate:   "2020-01-15",
+		EndDate:     "2020-02-15",
+		Description: "HALOO GUYSSSSS",
+		NodeJs:      true,
+		ReactJs:     false,
+		Golang:      false,
+		Javascript:  false,
+		Image:       "adi.jpg",
+	},
+	{
+		Author:      "Adiwidiawan",
+		ProjectName: "Project 2",
+		Durations:   Duration("2020-01-15", "2020-02-15"),
+		StartDate:   "2020-01-15",
+		EndDate:     "2020-01-22",
+		Description: "HALOO GUYSSSSS",
+		NodeJs:      true,
+		ReactJs:     true,
+		Golang:      false,
+		Javascript:  false,
+		Image:       "adi2.jpg",
+	},
+	{
+		Author:      "Adiwidiawan",
+		ProjectName: "Project 3",
+		Durations:   Duration("2020-01-15", "2020-02-15"),
+		StartDate:   "2020-01-15",
+		EndDate:     "2021-02-15",
+		Description: "HALOO GUYSSSSS",
+		NodeJs:      true,
+		ReactJs:     true,
+		Golang:      true,
+		Javascript:  false,
+		Image:       "adi3.jpg",
 	},
 }
 
@@ -57,6 +89,7 @@ func home(x echo.Context) error {
 	if err != nil {
 		return x.JSON(500, err.Error())
 	}
+
 	data := map[string]interface{}{
 		"Project": dataProject,
 	}
@@ -105,14 +138,17 @@ func projectDetail(c echo.Context) error {
 	for index, data := range dataProject {
 		if index == idInt {
 			projectDetail = Project{
-				Author:       data.Author,
-				ProjectName:  data.ProjectName,
-				Durations:    data.Durations,
-				StartDate:    data.StartDate,
-				EndDate:      data.EndDate,
-				Description:  data.Description,
-				Technologies: []string{},
-				// Image:        "adi.jpg",
+				Author:      data.Author,
+				ProjectName: data.ProjectName,
+				Durations:   data.Durations,
+				StartDate:   data.StartDate,
+				EndDate:     data.EndDate,
+				Description: data.Description,
+				NodeJs:      data.NodeJs,
+				ReactJs:     data.ReactJs,
+				Golang:      data.Golang,
+				Javascript:  data.Javascript,
+				Image:       data.Image,
 			}
 		}
 	}
@@ -130,20 +166,24 @@ func addmyProject(c echo.Context) error {
 	description := c.FormValue("description")
 	StartDate := c.FormValue("startdate")
 	EndDate := c.FormValue("enddate")
-	// checklis1 := c.FormValue("checklis1")
-	// checklis2 := c.FormValue("checklis2")
-	// checklis3 := c.FormValue("checklis3")
-	// checklis4 := c.FormValue("checklis4")
+	nodeJs := c.FormValue("nodeJs")
+	reactJs := c.FormValue("reactJs")
+	golang := c.FormValue("golang")
+	javascript := c.FormValue("javascript")
+	image := c.FormValue("image")
 
 	newProject := Project{
-		Author:       "Adiwidiawan",
-		ProjectName:  projectName,
-		Durations:    Duration(StartDate, EndDate),
-		StartDate:    StartDate,
-		EndDate:      EndDate,
-		Description:  description,
-		Technologies: []string{},
-		Image:        "",
+		Author:      "Adiwidiawan",
+		ProjectName: projectName,
+		Durations:   Duration(StartDate, EndDate),
+		StartDate:   StartDate,
+		EndDate:     EndDate,
+		Description: description,
+		NodeJs:      (nodeJs == "nodeJs"),
+		ReactJs:     (reactJs == "reactJs"),
+		Golang:      (golang == "golang"),
+		Javascript:  (javascript == "javascript"),
+		Image:       image,
 	}
 
 	dataProject = append(dataProject, newProject)
@@ -179,12 +219,15 @@ func editProject(x echo.Context) error {
 			ProjectEdit = Project{
 				Author:      data.Author,
 				ProjectName: data.ProjectName,
-				// Durations:    Duration(data.StartDate, data.EndDate),
+				Durations:   data.Durations,
 				StartDate:   data.StartDate,
 				EndDate:     data.EndDate,
 				Description: data.Description,
-				// Technologies: []string{},
-				// Image:        "",
+				NodeJs:      data.NodeJs,
+				ReactJs:     data.ReactJs,
+				Golang:      data.Golang,
+				Javascript:  data.Javascript,
+				Image:       data.Image,
 			}
 		}
 	}
@@ -211,12 +254,11 @@ func updatedProject(x echo.Context) error {
 	description := x.FormValue("description")
 	StartDate := x.FormValue("startdate")
 	EndDate := x.FormValue("enddate")
-	// checklis1 := x.FormValue("checklis1")
-	// checklis2 := x.FormValue("checklis2")
-	// checklis3 := x.FormValue("checklis3")
-	// checklis4 := x.FormValue("checklis4")
-	// StartDatee, _ := time.Parse("2006-01-02", StartDate)
-	// EndDatee, _ := time.Parse("2006-01-02", EndDate)
+	nodeJs := x.FormValue("nodeJs")
+	reactJs := x.FormValue("reactJs")
+	golang := x.FormValue("golang")
+	javascript := x.FormValue("javascript")
+	image := x.FormValue("image")
 
 	UpdatedProject := Project{
 		Author:      "Adiwidiawan",
@@ -225,8 +267,11 @@ func updatedProject(x echo.Context) error {
 		StartDate:   StartDate,
 		EndDate:     EndDate,
 		Description: description,
-		// Technologies: []string{},
-		// Image:        Image,
+		NodeJs:      (nodeJs == "nodeJs"),
+		ReactJs:     (reactJs == "reactJs"),
+		Golang:      (golang == "golang"),
+		Javascript:  (javascript == "javascript"),
+		Image:       image,
 	}
 
 	dataProject[Id] = UpdatedProject

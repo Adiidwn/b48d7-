@@ -96,7 +96,7 @@
     <div class="grid-container reveal">
 <!-- ISI PROJECT -->
         <div class="projectItemcontoh">
-            <img class="projectImage" src="../assets/images/adi2.jpg" />
+            <img class="projectImage" src="/assets/images/{{$project.Image}}" />
 <!-- IMAGES -->
         <a href="projectDetail/{{$id}}" class="linkProject"><div class="imageProject" >{{$project.ProjectName}}</div></a>
 <!-- TITLE -->
@@ -107,10 +107,10 @@
             </div>
 <!-- ISI CONTENT -->
             <div class="iconProject">
-                <i class="fa-brands fa-node-js"></i>
-                <i class="fa-brands fa-react"></i>
-                <i class="fa-brands fa-jsfiddle"></i>
-                <i class="fa-solid fa-scroll"></i>
+                {{if $project.NodeJs}}<i class="fa-brands fa-node-js"></i> {{end}}
+                {{if $project.ReactJs}}<i class="fa-brands fa-react"></i> {{end}}
+                {{if $project.Golang}}<i class="fa-brands fa-jsfiddle"></i> {{end}}
+                {{if $project.Javascript}}<i class="fa-solid fa-scroll"></i> {{end}}
             </div>
 <!-- ICON -->
             <div class="btnMother ">
