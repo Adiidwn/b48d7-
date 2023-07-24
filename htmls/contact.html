@@ -15,37 +15,38 @@
 </head>
 <body>
     
-<!-- NAV -->
- <!-- NAV -->
-<!-- logo -->
-<nav class=" navbar navbar-expand-lg navbar-light bg-light   rounded">
-    <a class="navbar-brand ms-4" href="/" ><img style="height: 33px;" src="/assets/images/skills.jpg" class="dumbways"></a>
-<!-- Hamburger ICON -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="hamburgerClick" >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-<!--Home  -->
-    <div class="m-1 collapse navbar-collapse justify-content-between navbarText " id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Home </a>
-        </li>
-<!-- Add Project -->
-        <li class="nav-item">
-          <a class="nav-link" href="addProject">Add Project</a>
-        </li>
-<!-- Testimonials -->
-        <li class="nav-item">
-          <a class="nav-link " href="testimonials">Testimonials</a>
-        </li>
-<!-- Contact Me -->
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <button  style="border-radius: 18px; background-color: orangered;" class="btn  my-2 my-sm-0 me-3" type="submit"><a  style="font-weight: bold; color: black;text-decoration: none;" href="contact">Contact Me</a></button>
-      </form>
-    </div>
-  </nav>
-  <!--Hamburger  -->
+  <!-- NAVBAR -->
+  <div class="">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+           <div class="brandFather"> 
+            <a href="/"><img src="/assets/images/ID.-removebg-preview.png" class="brandnav w-25 bg-dark "></a>
+        </div>
+        
+          
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="navbar-nav">
+                    <a href="/" class="nav-item nav-link h5">Home</a>
+                    <a href="about" class="nav-item nav-link  h5">About</a>
+                    <a href="addProject" class="nav-item nav-link h5">Add Project</a>
+                    <a href="testimonials" class="nav-item nav-link h5">Testimonials</a>
+                </div>
+                <form class="d-flex ms-auto visually-hidden">
+                    <input type="text" class="form-control me-sm-2" placeholder="Search">
+                    <button type="submit" class="btn btn-outline-light">Search</button>
+                </form>
+                <form class="d-flex ms-auto form-inline my-2 my-lg-0 ">
+                    <button class=" btn my-2 my-sm-0 me-3 btn-light buttonContact" type="submit"><a class="contactMe h6 active" href="contact">Contact Me</a></button>
+                  </form>
+            </div>
+        </div>
+    </nav>
+</div>
+<!-- END NAV -->
   
     
 
@@ -88,9 +89,82 @@
   
 <!-- BUTTON SUBMIT -->
 <div class="d-flex flex-row-reverse">
-  <button type="submit" class=" btn text-light bg-black border-black " onclick="submitData(event)">Submit</button>
+  <button type="submit" class="btn btn-primary bg-dark border-black " onclick="submitData(event)">Submit</button>
 </div>
 </form>
+
+
+<br><br><br><br><br><br><br><br>
+<!-- FOOTER -->
+<footer class="text-center text-white" style="background-color: #f1f1f1;">
+    <!-- Grid container -->
+    <div class="container pt-4">
+      <!-- Section: Social media -->
+      <section class="mb-4">
+        <!-- Facebook -->
+        <a
+          class="btn btn-link btn-floating btn-lg text-dark m-1"
+          href="#!"
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+  
+        <!-- Twitter -->
+        <a
+          class="btn btn-link btn-floating btn-lg text-dark m-1"
+          href="#!"
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-twitter"></i
+        ></a>
+  
+        <!-- Google -->
+        <a
+          class="btn btn-link btn-floating btn-lg text-dark m-1"
+          href="#!"
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-google"></i
+        ></a>
+  
+        <!-- Instagram -->
+        <a
+          class="btn btn-link btn-floating btn-lg text-dark m-1"
+          href="#!"
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-instagram"></i
+        ></a>
+  
+        <!-- Linkedin -->
+        <a
+          class="btn btn-link btn-floating btn-lg text-dark m-1"
+          href="#!"
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-linkedin"></i
+        ></a>
+        <!-- Github -->
+        <a
+          class="btn btn-link btn-floating btn-lg text-dark m-1"
+          href="#!"
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-github"></i
+        ></a>
+      </section>
+      <!-- Section: Social media -->
+    </div>
+<footer class="bg-light text-center text-lg-start bg">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="color: white; background-color: rgb(33,37,41);">
+      © 2023 Copyright:
+      <a class="text-light" href="/">VodlabID.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+<!-- END FOOTER -->
 
 <script src="/assets/javascript/contact.js"></script>
 

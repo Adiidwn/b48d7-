@@ -1,0 +1,207 @@
+.brandnav{
+    width: 100px;
+}
+.brandFather.a:hover{
+    width: larger;
+    height: larger;
+}
+.CFather{
+    height: 600px;
+    /* margin: 155px; */
+    margin-top: 100px;
+    width: 35% !important;
+    display: contents;
+    color: black;
+    /* height: 100px; */
+    display: flex;
+    /* align-content: center; */
+    justify-content: space-evenly;
+}
+.CFatherPD{
+    height: 600px;  
+    margin-top: 100px;
+    width: 60% !important;
+    display: flex;
+    color: black; 
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.CFather1{
+    height: 600px;
+    /* margin: 155px; */
+    margin-top: 100px;
+    width: 18% !important;
+    display: contents;
+    color: black;
+    /* height: 100px; */
+    display: flex;
+    /* align-content: center; */
+    justify-content: space-evenly;
+    -webkit-transition: .3s ease-in-out !important;
+	transition: .3s ease-in-out !important;
+}
+.CGrandfather{
+    background-image: url(/assets/images/iceland.jpg);
+    height: 805px;
+}
+.CGF{
+
+    width: 75%;
+}
+.imageProject{
+    width: 90%; 
+    height: 250px; 
+    border-radius: 30px; 
+    object-fit: cover;
+}
+.iconProject1{
+   
+    color: white; 
+    text-decoration: none;
+    font-size: 28px;
+    gap: 15px;
+}
+.grandParentMid{
+    height: 100%;
+    /* background-color: rgb(218,226,230); */
+    justify-content: center;
+    gap: 50px;
+    background-image: url(/assets/images/moon.jpg);
+}
+.project-body{
+    flex-direction: column;
+    display: flex;
+ 
+}
+.button-project{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 30px;
+   
+}
+.imageProject1{
+    width: 90%; 
+    height: 250px; 
+    border-radius: 30px; 
+    object-fit: cover;
+    
+}
+.button-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 30px;
+}
+.cardProject{
+   
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 0.25rem;
+    height: 100%;
+   
+}
+.projectCardcontoh{
+    box-shadow: 0px 0px 10px;
+    margin: 0;
+    transition: transform .2s;
+    border-radius: 10px;
+    width: 290px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeUp 0, 7s;
+}
+.CFather1:hover{
+    transform: scale(1.05);
+}
+.Oimage{
+    -webkit-transition: .3s ease-in-out !important;
+	transition: .3s ease-in-out !important;
+    border-radius: 50px;
+}
+.Oimage:hover{
+    transform: scale(1.05);
+}
+.card-project{
+    height: 65px;
+}
+.middleGap{
+    height: 1px;
+    box-shadow: inset 0px -8px 6px -6px #3d3c3c,inset 0px 8px 6px -6px #3d3c3c
+
+}
+.brderTOP{
+    box-shadow: inset 0px 8px 6px -6px #3d3c3c
+}
+.brderBOT{
+    box-shadow: inset 0px -8px 6px -6px #3d3c3c
+}
+.card-title:hover{
+    font-size: 22px !important;
+    color: rgb(148, 154, 157);
+}
+.midGap{
+    height: 30px;
+}
+
+/* HOVER IMAGES */
+
+.hover01 figure img {
+	-webkit-transform: scale(1) !important;
+	transform: scale(1) !important;
+	-webkit-transition: .3s ease-in-out !important;
+	transition: .3s ease-in-out !important;
+}
+.hover01 figure:hover img {
+	-webkit-transform: scale(1.2) !important;
+	transform: scale(1.2) !important;
+}
+.hover02 figure img {
+	-webkit-transform: scale(1) !important;
+	transform: scale(1) !important;
+	-webkit-transition: .3s ease-in-out !important;
+	transition: .3s ease-in-out !important;
+}
+.hover02 figure:hover img {
+	-webkit-transform: scale(1.1) !important;
+	transform: scale(1.1) !important;
+}
+
+@media screen and (max-width: 1222px){
+    .CFather{
+        width: 50% !important;
+    }
+    .CFather1 {
+        width: 33% !important;
+    }
+    .col-2{
+        width: 33%;
+    }
+
+}
+
+
+@media screen and (max-width: 666px){
+    .CFather{
+        width: 90% !important;
+    }
+    .CFather1 {
+        height: 600px;
+        margin-top: 100px;
+        width: 90% !important;
+        display: contents;
+        color: black; 
+        display: flex;
+        justify-content: flex-start;
+    }
+    .col-2{
+        width: 70%;
+    }
+}

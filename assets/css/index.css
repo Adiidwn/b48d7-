@@ -78,12 +78,12 @@
     font-weight: bold;
 }
 .nav-link:hover{
-    color: orangered !important;
+    color: rgb(218,226,230) !important;
 }
 
 .btn:hover{
-    background-color: orangered;
-    color: black;
+    background-color: rgb(218,226,230) !important;
+    color: rgb(33,37,41) !important;
     font-weight: bold;
     border-style: none;
     border-radius: 15px;
@@ -115,13 +115,21 @@
 .contactMe{
     color: white;
     text-decoration: none;
-    font-weight: bold;
+    color: black;
+}
+.BTNContact{
+    background-color: rgb(218,226,230);
+ 
+    background-color: white;
 }
 .btn{
     animation: fadeDown 1s;
 }
+.btn-light:hover{
+    background-color: rgb(218,226,230);
+}
 .contactMe:hover{
-    color: black;
+    background-color: rgb(218,226,230);
 }
 /* Inside */
 .a {
@@ -210,9 +218,11 @@
 }
 .bcontact:hover{
     
-    background-color: orangered !important;
-    color: black !important;
-    font-weight: bold !important;
+    background-color: rgb(218,226,230) !important;
+    color: rgb(33,37,41) !important;
+    font-weight: bold;
+    border-style: none;
+    border-radius: 15px;
 } 
 .icon{
     font-size: 35px;  
@@ -266,7 +276,7 @@
     
 }
 .h1myproject {
-    height: 190px;
+ 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -289,6 +299,18 @@
     height: 102%;
     
   }
+  .projectItemcontoh1{
+    box-shadow: 0px 0px 10px;
+    margin: 0;
+    background-color: lightgrey;
+    border-radius: 10px;
+    width: 290px;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeUp 0,7s;
+}
 
 
 
@@ -307,9 +329,7 @@
     border-color: black;
     
 }
-.btn-primary{
-    background-color: black;
-}
+
 .Update{
     text-decoration: none;
     color: white;
@@ -318,10 +338,7 @@
     color: black;
     background-color: orangered;
 }
-.btn-primary:hover{
-    color: black;
-    background-color: orangered;
-}
+
 .linkProject:hover{
     color: orangered;
 }
@@ -349,14 +366,9 @@
     font-size: small
 }
 .iconProject{
-    margin: 0;
-    padding: 10px;
     color: black; 
-    text-decoration: none;background-color: lightgrey;
+    text-decoration: none;
     font-size: 28px;
-    height: 0;
-    margin-bottom: 40px;
-    display: flex;
     gap: 15px;
 }
 .projectImage{

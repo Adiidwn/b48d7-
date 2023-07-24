@@ -49,6 +49,7 @@ func main() {
 	e.GET("/contact", contact)
 	e.GET("/addProject", addProject)
 	e.GET("/testimonials", testimonials)
+	e.GET("/about", about)
 	e.GET("/projectDetail/:id", projectDetail)
 	e.POST("/addmyProject", addmyProject)
 	e.POST("/deletemyProject/:id", deletemyProject)
@@ -83,6 +84,7 @@ func home(x echo.Context) error {
 		each.Author = "Adiwidiawan"
 
 		each.Durations = Duration(each.StartDate, each.EndDate)
+
 		if checkValue(each.Technologies, "React Js") {
 			each.ReactJs = true
 		}
@@ -117,15 +119,15 @@ func Duration(StartDate time.Time, EndDate time.Time) string {
 	month := day / 30
 	year := month / 12
 	if day < 7 {
-		return strconv.Itoa(day) + "day"
+		return strconv.Itoa(day) + " Day"
 	}
 	if week < 4 {
-		return strconv.Itoa(week) + "week"
+		return strconv.Itoa(week) + " Week"
 	}
 	if month < 4 {
-		return strconv.Itoa(month) + "month"
+		return strconv.Itoa(month) + " Month"
 	}
-	return strconv.Itoa(year) + "year"
+	return strconv.Itoa(year) + " Year"
 
 }
 
@@ -140,6 +142,14 @@ func contact(x echo.Context) error {
 
 func addProject(x echo.Context) error {
 	tmplate, err := template.ParseFiles("htmls/project1.html")
+
+	if err != nil {
+		return x.JSON(500, err.Error())
+	}
+	return tmplate.Execute(x.Response(), nil)
+}
+func about(x echo.Context) error {
+	tmplate, err := template.ParseFiles("htmls/about.html")
 
 	if err != nil {
 		return x.JSON(500, err.Error())
