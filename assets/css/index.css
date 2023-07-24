@@ -307,7 +307,21 @@
     border-color: black;
     
 }
-
+.btn-primary{
+    background-color: black;
+}
+.Update{
+    text-decoration: none;
+    color: white;
+}
+.Update:hover{
+    color: black;
+    background-color: orangered;
+}
+.btn-primary:hover{
+    color: black;
+    background-color: orangered;
+}
 .linkProject:hover{
     color: orangered;
 }
