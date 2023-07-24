@@ -1,0 +1,129 @@
+.brandnav{
+    width: 100px;
+}
+.brandFather.a:hover{
+    width: larger;
+    height: larger;
+}
+.CFather{
+    height: 600px;
+    margin: 155px;
+    margin-top: 100px;
+    width: 25% !important;
+}
+.CGrandfather{
+    background-image: url(/assets/images/iceland.jpg);
+}
+.imageProject{
+    width: 90%; 
+    height: 250px; 
+    border-radius: 30px; 
+    object-fit: cover;
+}
+.grandParentMid{
+    height: 100%;
+    /* background-color: rgb(218,226,230); */
+    justify-content: center;
+    gap: 50px;
+    background-image: url(/assets/images/moon.jpg);
+}
+.project-body{
+    flex-direction: column;
+    display: flex;
+    justify-content: flex-start;
+}
+.button-project{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 30px;
+   
+}
+.imageCard{
+    width: 200px; 
+    height: 180px; 
+    border-radius: 30px; 
+    object-fit: cover;
+}
+.button-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 30px;
+}
+.cardProject{
+   
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 0.25rem;
+    height: 100%;
+   
+}
+.projectCardcontoh{
+    box-shadow: 0px 0px 10px;
+    margin: 0;
+    transition: transform .2s;
+    border-radius: 10px;
+    width: 290px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeUp 0, 7s;
+}
+.projectCardcontoh:hover{
+    transform: scale(1.1);
+}
+.card-project{
+    height: 65px;
+}
+.middleGap{
+    height: 1px;
+    box-shadow: inset 0px -8px 6px -6px #3d3c3c,inset 0px 8px 6px -6px #3d3c3c
+
+}
+.brderTOP{
+    box-shadow: inset 0px 8px 6px -6px #3d3c3c
+}
+.brderBOT{
+    box-shadow: inset 0px -8px 6px -6px #3d3c3c
+}
+.card-title:hover{
+    font-size: 22px !important;
+    color: rgb(148, 154, 157);
+}
+
+/* HOVER IMAGES */
+
+.hover01 figure img {
+	-webkit-transform: scale(1) !important;
+	transform: scale(1) !important;
+	-webkit-transition: .3s ease-in-out !important;
+	transition: .3s ease-in-out !important;
+}
+.hover01 figure:hover img {
+	-webkit-transform: scale(1.2) !important;
+	transform: scale(1.2) !important;
+}
+.hover02 figure img {
+	-webkit-transform: scale(1) !important;
+	transform: scale(1) !important;
+	-webkit-transition: .3s ease-in-out !important;
+	transition: .3s ease-in-out !important;
+}
+.hover02 figure:hover img {
+	-webkit-transform: scale(1.1) !important;
+	transform: scale(1.1) !important;
+}
+
+
+@media screen and (min-width: 1291){
+    .CFather{
+        margin: 100px;
+        width: 50% ;
+    }
+}
