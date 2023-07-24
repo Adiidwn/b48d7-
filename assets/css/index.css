@@ -126,10 +126,10 @@
     animation: fadeDown 1s;
 }
 .btn-light:hover{
-    background-color: rgb(218,226,230);
+    background-color: rgb(33,37,41);
 }
 .contactMe:hover{
-    background-color: rgb(218,226,230);
+
 }
 /* Inside */
 .a {
@@ -240,7 +240,7 @@
 }
 .iconlogo:hover {
     font-size: larger;
-    color: orangered;
+    color: rgb(33,37,41);
 }
 .bdownload{
     color: black; 
@@ -252,7 +252,7 @@
 }
 .bdownload:hover {
     font-size: larger;
-    color: orangered;
+    color: rgb(33,37,41);
 }
 
 /* Next Page */
@@ -335,12 +335,12 @@
     color: white;
 }
 .Update:hover{
-    color: black;
-    background-color: orangered;
+    color: rgb(33,37,41);
+    background-color: rgb(255,255,255);
 }
 
 .linkProject:hover{
-    color: orangered;
+    color: rgb(255,255,255);
 }
 .imageProject{
     margin: 0; 
