@@ -67,7 +67,7 @@
                     <figure><img class="imageProject " src="/assets/images/tree.jpg" alt=""></figure>
                     </div>
                 <div>
-                    <p class="card-text mt-2">With supporting text below as a natural lead-in to additional content. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto aperiam nihil numquam rem </p>
+                    <div class="card-text mt-2 overflow-auto">With supporting text below as a natural lead-in to additional content. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto aperiam nihil numquam rem Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto officiis minima vel molestias iste reiciendis numquam tempore modi unde magni cumque aspernatur placeat, molestiae, soluta fugiat delectus sapiente eaque nisi.</div>
                     <div class="iconProject">
                         <i class="fa-brands fa-node-js"></i>
                         <i class="fa-brands fa-react"></i>
@@ -102,7 +102,7 @@
                     <figure><img class="imageProject " src="/assets/images/nature.jpg" alt=""></figure>
                     </div>
             <div>
-                <p class="card-text mt-2">With supporting text below as a natural lead-in to additional content. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto aperiam nihil numquam rem </p>
+                <div class="card-text mt-2 overflow-auto">With supporting text below as a natural lead-in to additional content. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto aperiam nihil numquam rem Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime inventore placeat fuga architecto, illum vel saepe, alias quisquam assumenda culpa recusandae numquam corrupti voluptate suscipit asperiores quod adipisci! Nihil, commodi?</div>
                 <div class="iconProject">
                     <i class="fa-brands fa-node-js"></i>
                     <i class="fa-brands fa-react"></i>
@@ -137,7 +137,7 @@
                         <figure><img class="imageProject " src="/assets/images/boy.jpg" alt=""></figure>
                         </div>
                 <div>
-                    <p class="card-text mt-2">With supporting text below as a natural lead-in to additional content. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto aperiam nihil numquam rem </p>
+                    <div class="card-text mt-2 overflow-auto">With supporting text below as a natural lead-in to additional content. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto aperiam nihil numquam rem Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, deleniti architecto minus necessitatibus suscipit nisi, dolores ipsa quia mollitia dignissimos sint officiis, facere fugiat commodi laborum in error voluptas magnam!</div>
                     <div class="iconProject">
                         <i class="fa-brands fa-node-js"></i>
                         <i class="fa-brands fa-react"></i>
@@ -188,17 +188,19 @@
                 </div>
                 <div class="card-body project-body">
                     <div>
-                    <a href="projectDetail/{{$id}}" class="card-title h5 text-decoration-none">{{$project.ProjectName}}</a>
+                    <a href="projectDetail/{{$project.Id}}" class="card-title h5 text-decoration-none">{{$project.ProjectName}}</a>
                     </div>
                     <div class="mt-2">
                         <img class="imageProject" src="/assets/images/{{$project.Image}}" alt="">
                     <div>
-                        <p class="card-text mt-2 card-project">{{$project.Description}}</p>
+                        <div class="card-text mt-2 card-project overflow-auto">{{$project.Description}}Project ini menampilkan berbagai macam hal yang akan di lakukan.</div>
                         <div class="iconProject">
                             {{if $project.NodeJs}}
-                            <i class="fa-brands fa-node-js"></i> {{end}}
+                            <i class="fa-brands fa-node-js"></i> 
+                            {{end}}
                             {{if $project.ReactJs}}
-                            <i class="fa-brands fa-react"></i>  {{end}}
+                            <i class="fa-brands fa-react"></i>  
+                            {{end}}
                             {{if $project.Golang}}
                             <i class="fa-brands fa-golang"></i>
                             {{end}}
@@ -208,10 +210,10 @@
                         </div>
                     </div>
                     <div class="button-card mt-2">
-                        <form class="w-25 mb-2" action="/updateProject/{{$id}}" method="get" >
+                        <form class="w-25 mb-2" action="/updateProject/{{$project.Id}}" method="get" >
                         <button class="btn btn-dark w-100">Edit</button>
                         </form>
-                        <form class="w-25 mb-2" action="/deletemyProject/{{$id}}" method="post" >
+                        <form class="w-25 mb-2" action="/deletemyProject/{{$project.Id}}" method="post" >
                         <button class="btn btn-dark w-100">Delete</button>
                         </form>
                     </div>
@@ -249,10 +251,12 @@
                     <span class="me-1"><span class="far fa-user"></span></span>
                     About me 
                 </button>
-              </form>
-                <button class="btn btn-dark" aria-label="mesage button" title="message button">
+              </form> 
+              <form action="contact">
+                <button class="btn btn-dark" aria-label="mesage button" title="message button" >
                     <span aria-hidden="true" class="far fa-envelope"></span>
                 </button>
+              </form>
             </div>
         </div>
     </div>

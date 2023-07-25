@@ -79,11 +79,11 @@
                   <i class="fa-solid fa-scroll"></i>
                   {{end}}
                 </div>
-                ID : {{ .Id }}
+                
             </div>
             <div class="d-flex">
-              <form class="w-50 mb-2" action="/updateProject/{{.Id}}" method="get" >
-              <button class="btn btn-primary bg-dark border-black w-50" type="button" >Edit</button>
+              <form class="w-50 mb-2" action="/updateProject/{{.Project.Id}}" method="get" >
+              <button class="btn btn-primary bg-dark border-black w-50">Edit</button>
             </form>
           </form>
           <form class="w-50 mb-2" action="/deletemyProject/{{.Id}}" method="post" >
