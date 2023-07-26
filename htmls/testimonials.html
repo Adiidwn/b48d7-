@@ -6,6 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/index.css">
     <link rel="stylesheet" href="/assets/css/testimonials.css">
+    <link rel="stylesheet" href="/assets/css/login.css">
     <script src="https://kit.fontawesome.com/fa61d725ab.js" crossorigin="anonymous"></script>
     <title>Testimonials</title>
 </head>
@@ -34,9 +35,47 @@
                   <input type="text" class="form-control me-sm-2" placeholder="Search">
                   <button type="submit" class="btn btn-outline-light">Search</button>
               </form>
-              <form class="d-flex ms-auto form-inline my-2 my-lg-0 ">
-                  <button class=" btn my-2 my-sm-0 me-3 btn-light buttonContact" type="submit"><a class="contactMe h6" href="contact">Contact Me</a></button>
-                </form>
+              {{if .UserLoginSessi.Islogin}}  
+              <div class="d-flex ms-auto form-inline my-2 my-lg-0" >
+                  <li class="nav-item dropdown loginButton">
+                    <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Hallo , {{.UserLoginSessi.Name}}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                       <li>
+                         <form method="post" action="/logout">
+                          <button class="dropdown-item">Logout
+                          </button>
+                         </form>
+                       </li>
+                    </ul>
+                  </li>
+                  <button class=" btn my-2 my-sm-0 me-3 btn-light buttonContact ms-3" type="submit"><a class="contactMe h6" href="contact">Contact Me</a></button>
+                </div>
+              {{else}}
+              <div class="d-flex ms-auto form-inline my-2 my-lg-0" >
+                <li class="nav-item dropdown loginButton">
+                  <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Login/Register
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                     <li>
+                       <form method="get" action="/form-login">
+                        <button class="dropdown-item">Login
+                        </button>
+                       </form>
+                     </li>
+                     <li>
+                      <form method="get" action="/form-register">
+                       <button class="dropdown-item">Register
+                       </button>
+                      </form>
+                    </li>
+                  </ul>
+                </li>
+                <button class=" btn my-2 my-sm-0 me-3 btn-light buttonContact ms-3" type="submit"><a class="contactMe h6" href="contact">Contact Me</a></button>
+              </div>
+                {{end}}
           </div>
       </div>
   </nav>

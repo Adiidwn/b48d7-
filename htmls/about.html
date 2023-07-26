@@ -7,13 +7,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/index.css">
     <link rel="stylesheet" href="/assets/css/newnav.css">
+    <link rel="stylesheet" href="/assets/css/login.css">
     <script src="https://kit.fontawesome.com/fa61d725ab.js" crossorigin="anonymous"></script>
 
     <title>About Me</title>
 </head>
 <body>
- <!-- NAVBAR -->
- <div class="">
+  <!-- NAVBAR -->
+  <div class="">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
            <div class="brandFather"> 
@@ -28,7 +29,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="navbar-nav">
                     <a href="/" class="nav-item nav-link  h5">Home</a>
-                    <a href="/" class="nav-item nav-link active h5 ">About</a>
+                    <a href="about" class="nav-item nav-link active h5">About</a>
                     <a href="addProject" class="nav-item nav-link h5">Add Project</a>
                     <a href="testimonials" class="nav-item nav-link h5">Testimonials</a>
                 </div>
@@ -36,16 +37,55 @@
                     <input type="text" class="form-control me-sm-2" placeholder="Search">
                     <button type="submit" class="btn btn-outline-light">Search</button>
                 </form>
-                <form class="d-flex ms-auto form-inline my-2 my-lg-0 ">
-                    <button class=" btn my-2 my-sm-0 me-3 btn-light buttonContact" type="submit"><a class="contactMe h6" href="contact">Contact Me</a></button>
-                  </form>
+              {{if .UserLoginSessi.Islogin}}  
+                <div class="d-flex ms-auto form-inline my-2 my-lg-0" >
+                    <li class="nav-item dropdown loginButton">
+                      <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Hallo , {{.UserLoginSessi.Name}}
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                         <li>
+                           <form method="post" action="/logout">
+                            <button class="dropdown-item">Logout
+                            </button>
+                           </form>
+                         </li>
+                      </ul>
+                    </li>
+                    <button class=" btn my-2 my-sm-0 me-3 btn-light buttonContact ms-3" type="submit"><a class="contactMe h6" href="contact">Contact Me</a></button>
+                  </div>
+                {{else}}
+                <div class="d-flex ms-auto form-inline my-2 my-lg-0" >
+                  <li class="nav-item dropdown loginButton">
+                    <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Login/Register
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                       <li>
+                         <form method="get" action="/form-login">
+                          <button class="dropdown-item">Login
+                          </button>
+                         </form>
+                       </li>
+                       <li>
+                        <form method="get" action="/form-register">
+                         <button class="dropdown-item">Register
+                         </button>
+                        </form>
+                      </li>
+                    </ul>
+                  </li>
+                  <button class=" btn my-2 my-sm-0 me-3 btn-light buttonContact ms-3" type="submit"><a class="contactMe h6" href="contact">Contact Me</a></button>
+                </div>
+                  {{end}}
+                  
             </div>
         </div>
     </nav>
 </div>
 <!-- END NAV -->
 
-
+ 
 <div class="a ">
   <!-- IMAGES -->
       <div class="images fade-in-image">
@@ -54,15 +94,17 @@
           <p class="font2" >Fullstack Developer</p>
       </div>    
   <div class="divmain">
-  
+
   <!-- WELCOME -->        
       <div class="welcome">
               <h2 class="welcomeCon">
-              WELCOME TO MY WEB PROJECT
+              WELCOME TO VodlabID
               </h2>
+              <h5>
+                This is website for u guys to "SHOW" , "PROMOTE" even "CREATE" your own Projects TO BE THE BEST. and we will show it in the first page if u are  !!  
+              </h5>
               
-              
-              <p class="welcomeText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum rerum voluptatibus eum quae error earum nam dolorem voluptates praesentium minima ipsa, at aliquam quidem in, porro facilis sequi maxime omnis. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam eaque dicta molestiae totam facere debitis cumque praesentium, repellendus id? Hic harum quibusdam doloribus  dolore accusantium aliquam tenetur labore? Quod. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora culpa vel, ducimus facere possimus expedita, deserunt architecto, est ea doloribus consectetur distinctio sit ullam assumenda porro placeat facilis. Ipsum, eligendi. Lorem  Asperiores, aperiam! </p>
+              <p class="welcomeText">HI !! I AM ADIWIDIAWAN FROM INDONESIA IAM HERE GONNA SHOW U . Ipsum rerum voluptatibus eum quae error earum nam dolorem voluptates praesentium minima ipsa, at aliquam quidem in, porro facilis sequi maxime omnis. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam eaque dicta molestiae totam facere debitis cumque praesentium, repellendus id? Hic harum quibusdam doloribus  dolore accusantium aliquam tenetur labore? Quod. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora culpa vel, ducimus facere possimus expedita, deserunt architecto, est ea doloribus consectetur distinctio sit ullam assumenda porro placeat facilis. Ipsum, eligendi. Lorem  Asperiores, aperiam! </p>
       </div>
      
       

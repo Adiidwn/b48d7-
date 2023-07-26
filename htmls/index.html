@@ -6,10 +6,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/index.css">
     <link rel="stylesheet" href="/assets/css/newnav.css">
+    <link rel="stylesheet" href="/assets/css/login.css">
     <script src="https://kit.fontawesome.com/fa61d725ab.js" crossorigin="anonymous"></script>
    
   
-    <title>My Project</title>
+    <title>VodlabID</title>
     
 </head>
 <body>  
@@ -37,14 +38,54 @@
                         <input type="text" class="form-control me-sm-2" placeholder="Search">
                         <button type="submit" class="btn btn-outline-light">Search</button>
                     </form>
-                    <form class="d-flex ms-auto form-inline my-2 my-lg-0 ">
-                        <button class=" btn my-2 my-sm-0 me-3 btn-light buttonContact" type="submit"><a class="contactMe h6" href="contact">Contact Me</a></button>
-                      </form>
+                    {{if .UserLoginSessi.Islogin}}  
+                    <div class="d-flex ms-auto form-inline my-2 my-lg-0" >
+                        <li class="nav-item dropdown loginButton">
+                          <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Hallo , {{.UserLoginSessi.Name}}
+                          </a>
+                          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                             <li>
+                               <form method="post" action="/logout">
+                                <button class="dropdown-item">Logout
+                                </button>
+                               </form>
+                             </li>
+                          </ul>
+                        </li>
+                        <button class=" btn my-2 my-sm-0 me-3 btn-light buttonContact ms-3" type="submit"><a class="contactMe h6" href="contact">Contact Me</a></button>
+                      </div>
+                    {{else}}
+                    <div class="d-flex ms-auto form-inline my-2 my-lg-0" >
+                      <li class="nav-item dropdown loginButton">
+                        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Login/Register
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                           <li>
+                             <form method="get" action="/form-login">
+                              <button class="dropdown-item">Login
+                              </button>
+                             </form>
+                           </li>
+                           <li>
+                            <form method="get" action="/form-register">
+                             <button class="dropdown-item">Register
+                             </button>
+                            </form>
+                          </li>
+                        </ul>
+                      </li>
+                      <button class=" btn my-2 my-sm-0 me-3 btn-light buttonContact ms-3" type="submit"><a class="contactMe h6" href="contact">Contact Me</a></button>
+                    </div>
+                      {{end}}
+                      
                 </div>
             </div>
         </nav>
     </div>
 <!-- END NAV -->
+
   <!-- CAROUSEL -->
   <div id="carouselExampleFade" class="carousel slide carousel-fade">
 
@@ -174,6 +215,10 @@
 <div class="grandParentMid brderTOP">
     <br>
     <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <h1 class="h1myproject text-light ">MY PROJECTS
     </h1>
     
@@ -183,7 +228,7 @@
         
 
           <div class="card text-center  CFather1">
-              <div class="card-header">
+              <div class="card-header mt-1">
                  Projects
                 </div>
                 <div class="card-body project-body">
@@ -194,7 +239,7 @@
                         <img class="imageProject" src="/assets/images/{{$project.Image}}" alt="">
                     <div>
                         <div class="card-text mt-2 card-project overflow-auto">{{$project.Description}}Project ini menampilkan berbagai macam hal yang akan di lakukan.</div>
-                        <div class="iconProject">
+                        <div class="iconProject mt-3">
                             {{if $project.NodeJs}}
                             <i class="fa-brands fa-node-js"></i> 
                             {{end}}
@@ -209,7 +254,7 @@
                             {{end}}
                         </div>
                     </div>
-                    <div class="button-card mt-2">
+                    <div class="button-card mt-3">
                         <form class="w-50 mb-2" action="/updateProject/{{$project.Id}}" method="get" >
                         <button class="btn btn-dark w-100">Edit</button>
                         </form>
@@ -244,7 +289,7 @@
             <h3 class="h5 card-title">Adiwidiawan</h3>
             <span class="text-gray"><span class="fas fa-map-marker-alt me-2"></span>Bandung,
                 IDN</span>
-            <p class="mt-3">I'am a Fullstack Engineer with great skills.</p>
+            <p class="mt-3">Hii !! I'm Adiwidiawan from Indonesia i'm a Fullstack Engineer with great skills. </p>
             <div class="btn-group">
               <form action="about">
                 <button class="btn btn-secondary btn-icon">
@@ -252,7 +297,7 @@
                     About me 
                 </button>
               </form> 
-              <form action="contact">
+              <form action="contact" >
                 <button class="btn btn-dark" aria-label="mesage button" title="message button" >
                     <span aria-hidden="true" class="far fa-envelope"></span>
                 </button>
@@ -265,6 +310,7 @@
 <!-- END ID CARD -->
 <br><br>
  
+
 <!-- FOOTER -->
 <footer class="text-center text-white" style="background-color: #f1f1f1;">
     <!-- Grid container -->

@@ -42,7 +42,7 @@
 	transition: .3s ease-in-out !important;
 }
 .CGrandfather{
-    background-image: url(/assets/images/iceland.jpg);
+    background-image: url(/assets/images/adi1.jpg);
     height: 805px;
 }
 .CGF{
@@ -70,7 +70,8 @@
     /* background-color: rgb(218,226,230); */
     justify-content: center;
     gap: 50px;
-    background-image: url(/assets/images/moon.jpg);
+    background-image: url(/assets/images/bgnature.jpg);
+    object-fit: cover;
 }
 .project-body{
     flex-direction: column;
@@ -133,7 +134,7 @@
     transform: scale(1.05);
 }
 .card-project{
-    height: 65px;
+    height: 80px;
 }
 .middleGap{
     height: 1px;
