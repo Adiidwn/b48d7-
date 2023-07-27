@@ -31,8 +31,12 @@
               <div class="navbar-nav">
                   <a href="/" class="nav-item nav-link  h5">Home</a>
                   <a href="about" class="nav-item nav-link  h5 ">About</a>
-                  <a href="addProject" class="nav-item nav-link h5 active">Add Project</a>
+                  {{if .UserLoginSessi.Islogin}} 
+                  <a href="addProject" class="nav-item nav-link h5">Add Project</a>
                   <a href="testimonials" class="nav-item nav-link h5">Testimonials</a>
+                  {{else}}
+                  <a href="testimonials" class="nav-item nav-link h5">Testimonials</a>
+                  {{end}}
               </div>
               <form class="d-flex ms-auto visually-hidden">
                   <input type="text" class="form-control me-sm-2" placeholder="Search">

@@ -31,8 +31,12 @@
                     <div class="navbar-nav">
                         <a href="/" class="nav-item nav-link active h5">Home</a>
                         <a href="about" class="nav-item nav-link  h5">About</a>
+                        {{if .UserLoginSessi.Islogin}} 
                         <a href="addProject" class="nav-item nav-link h5">Add Project</a>
                         <a href="testimonials" class="nav-item nav-link h5">Testimonials</a>
+                        {{else}}
+                        <a href="testimonials" class="nav-item nav-link h5">Testimonials</a>
+                        {{end}}
                     </div>
                     <form class="d-flex ms-auto visually-hidden">
                         <input type="text" class="form-control me-sm-2" placeholder="Search">
@@ -46,11 +50,17 @@
                           </a>
                           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                              <li>
-                               <form method="post" action="/logout">
-                                <button class="dropdown-item">Logout
-                                </button>
-                               </form>
-                             </li>
+                              <form>
+                               <a  href="#ProjectSection" class="dropdown-item">Projects
+                               </a>
+                              </form>
+                            </li>
+                            <li>
+                              <form method="post" action="/logout">
+                               <button class="dropdown-item">Logout
+                               </button>
+                              </form>
+                            </li>
                           </ul>
                         </li>
                         <button class=" btn my-2 my-sm-0 me-3 btn-light buttonContact ms-3" type="submit"><a class="contactMe h6" href="contact">Contact Me</a></button>
@@ -219,14 +229,16 @@
     <br>
     <br>
     <br>
-    <h1 class="h1myproject text-light ">MY PROJECTS
+    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0">
+    <h1 class="h1myproject text-light " id="ProjectSection">MY PROJECTS
     </h1>
+  </div>
     
     <div id="contents" class="grid-item  ">
         {{ range $id, $project := .Project }}  
 
         
-
+        
           <div class="card text-center  CFather1">
               <div class="card-header mt-1">
                  Projects
@@ -254,6 +266,7 @@
                             {{end}}
                         </div>
                     </div>
+                    {{if $.UserLoginSessi.Islogin}}  
                     <div class="button-card mt-3">
                         <form class="w-50 mb-2" action="/updateProject/{{$project.Id}}" method="get" >
                         <button class="btn btn-dark w-100">Edit</button>
@@ -262,6 +275,9 @@
                         <button class="btn btn-dark w-100">Delete</button>
                         </form>
                     </div>
+                    {{else}}
+                    
+                  {{end}}
                 </div>
             </div>
                 <div class="card-footer text-muted mb-3">

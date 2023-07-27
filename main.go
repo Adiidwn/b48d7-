@@ -171,11 +171,11 @@ func home(x echo.Context) error {
 	flash := map[string]interface{}{
 		"Project":        dataProject,
 		"UserLoginSessi": userLoginSessi,
-		"FlashM":         sessi.Values["message"],
-		"FlashS":         sessi.Values["status"],
+		// "FlashM":         sessi.Values["message"],
+		// "FlashS":         sessi.Values["status"],
 	}
 	delete(sessi.Values, "message")
-	delete(sessi.Values, "Status")
+	delete(sessi.Values, "status")
 	sessi.Save(x.Request(), x.Response())
 
 	return tmplate.Execute(x.Response(), flash)
@@ -230,26 +230,28 @@ func contact(x echo.Context) error {
 
 // ADDPROJECT FORM
 func addProject(x echo.Context) error {
+	sessi, _ := session.Get("session", x)
+
+	if userLoginSessi.Islogin != false {
+		userLoginSessi.Islogin = true
+		userLoginSessi.Name = sessi.Values["username"].(string)
+	} else {
+		return x.Redirect(http.StatusMovedPermanently, "/")
+	}
+
 	tmplate, err := template.ParseFiles("htmls/project1.html")
 
 	if err != nil {
 		return x.JSON(500, err.Error())
 	}
 
-	sessi, _ := session.Get("session", x)
-
-	if sessi.Values["Islogin"] != true {
-		userLoginSessi.Islogin = false
-	} else {
-		userLoginSessi.Islogin = true
-		userLoginSessi.Name = sessi.Values["username"].(string)
-	}
 	// fmt.Println(userLoginSessi.Name)
 	flash := map[string]interface{}{
 		"Project":        dataProject,
 		"UserLoginSessi": userLoginSessi,
 	}
-
+	delete(sessi.Values, "message")
+	delete(sessi.Values, "status")
 	sessi.Save(x.Request(), x.Response())
 
 	return tmplate.Execute(x.Response(), flash)
@@ -309,6 +311,15 @@ func testimonials(x echo.Context) error {
 
 // PROOJECT DETAIL FORM
 func projectDetail(c echo.Context) error {
+	sessi, _ := session.Get("session", c)
+
+	if userLoginSessi.Islogin != true {
+		userLoginSessi.Islogin = false
+	} else {
+		userLoginSessi.Islogin = true
+		userLoginSessi.Name = sessi.Values["username"].(string)
+	}
+
 	id := c.Param("id") // misal : 1
 
 	tmpl, err := template.ParseFiles("htmls/ProjectDetail.html")
@@ -329,14 +340,13 @@ func projectDetail(c echo.Context) error {
 	}
 
 	// SESSION
-	sessi, _ := session.Get("session", c)
 
-	if sessi.Values["Islogin"] != true {
-		userLoginSessi.Islogin = false
-	} else {
-		userLoginSessi.Islogin = true
-		userLoginSessi.Name = sessi.Values["username"].(string)
-	}
+	// if sessi.Values["Islogin"] != true {
+	// 	userLoginSessi.Islogin = false
+	// } else {
+	// 	userLoginSessi.Islogin = true
+	// 	userLoginSessi.Name = sessi.Values["username"].(string)
+	// }
 	// fmt.Println(userLoginSessi.Name)
 
 	sessi.Save(c.Request(), c.Response())
@@ -401,6 +411,13 @@ func deletemyProject(c echo.Context) error {
 
 // EDIT PROJECT FORM
 func editProject(x echo.Context) error {
+	sessi, _ := session.Get("session", x)
+	if userLoginSessi.Islogin != true {
+		return x.Redirect(http.StatusMovedPermanently, "/")
+	} else {
+		userLoginSessi.Islogin = true
+		userLoginSessi.Name = sessi.Values["username"].(string)
+	}
 	id := x.Param("id")
 	Id, _ := strconv.Atoi(id)
 
@@ -419,11 +436,18 @@ func editProject(x echo.Context) error {
 	}
 
 	data := map[string]interface{}{
-		"Project": dataProject,
-		"Id":      id,
+		"Project":        dataProject,
+		"Id":             id,
+		"UserLoginSessi": userLoginSessi,
+
 		// "startDateS": dataProject.StartDate.Format("2006-01-02"),
 		// "endDateS":   dataProject.EndDate.Format("2006-01-02"),
 	}
+
+	delete(sessi.Values, "message")
+	delete(sessi.Values, "status")
+	sessi.Save(x.Request(), x.Response())
+
 	return tmpl.Execute(x.Response(), data)
 }
 
@@ -478,33 +502,32 @@ func checkValue(x []string, checked string) bool {
 // LOGIN/REGISTER
 
 func formLogin(x echo.Context) error {
-	sessi, sessierr := session.Get("session", x)
 
-	if sessi.Values["Islogin"] != true {
-		userLoginSessi.Islogin = false
-
-	} else {
-		userLoginSessi.Islogin = true
+	if userLoginSessi.Islogin != false {
 		return x.Redirect(http.StatusMovedPermanently, "/")
 	}
+
+	// if sessi1.Values["Islogin"] != false {
+	// 	userLoginSessi.Islogin = true
+	// 	return redirectWMessage(x, "Tidak boleh Login kembali", true, "/")
+	// } else {
+	// 	userLoginSessi.Islogin = false
+	// }
 
 	tmplate, err := template.ParseFiles("htmls/form-login.html")
 	if err != nil {
 		return x.JSON(500, err.Error())
 	}
-
-	if sessierr != nil {
-		return x.JSON(http.StatusInternalServerError, sessierr.Error())
-	}
+	sessi1, _ := session.Get("session", x)
 
 	flash := map[string]interface{}{
-		"FlashM": sessi.Values["message"],
-		"FlashS": sessi.Values["status"],
+		"FlashM": sessi1.Values["message"],
+		"FlashS": sessi1.Values["status"],
 	}
 
-	delete(sessi.Values, "message")
-	delete(sessi.Values, "status")
-	sessi.Save(x.Request(), x.Response())
+	delete(sessi1.Values, "message")
+	delete(sessi1.Values, "status")
+	sessi1.Save(x.Request(), x.Response())
 
 	return tmplate.Execute(x.Response(), flash)
 }
@@ -529,7 +552,7 @@ func login(x echo.Context) error {
 	}
 
 	sessi, _ := session.Get("session", x)
-	sessi.Options.MaxAge = 10800 //10800 = 3jam
+	sessi.Options.MaxAge = 1080 //10800 = 3jam
 	sessi.Values["message"] = "Login Succes !"
 	sessi.Values["status"] = true
 	sessi.Values["username"] = dataUser.Username
@@ -542,23 +565,24 @@ func login(x echo.Context) error {
 }
 
 func formRegister(x echo.Context) error {
-	sessi, sessierr := session.Get("session", x)
-
-	if sessi.Values["Islogin"] != true {
-		userLoginSessi.Islogin = false
-
-	} else {
-		userLoginSessi.Islogin = true
+	// sessi1, _ := session.Get("session", x)
+	if userLoginSessi.Islogin != false {
 		return x.Redirect(http.StatusMovedPermanently, "/")
 	}
+	// if sessi1.Values["Islogin"] != false {
+	// 	userLoginSessi.Islogin = true
+	// 	return redirectWMessage(x, "Tidak boleh Register kembali", true, "/")
+	// } else {
+	// 	userLoginSessi.Islogin = false
+	// }
 
 	tmplate, err := template.ParseFiles("htmls/form-register.html")
-
-	if sessierr != nil {
-		return x.JSON(500, sessierr.Error())
+	if err != nil {
+		return x.JSON(500, err.Error())
 	}
 	// fmt.Println("message:", sessi.Values["message"])
 	// fmt.Println("status:", sessi.Values["status"])
+	sessi, _ := session.Get("session", x)
 
 	flash := map[string]interface{}{
 		"FlashM": sessi.Values["message"],
@@ -569,9 +593,6 @@ func formRegister(x echo.Context) error {
 	delete(sessi.Values, "Status")
 	sessi.Save(x.Request(), x.Response())
 
-	if err != nil {
-		return x.JSON(500, err.Error())
-	}
 	return tmplate.Execute(x.Response(), flash)
 }
 
@@ -604,7 +625,7 @@ func logout(x echo.Context) error {
 	sessi, _ := session.Get("session", x)
 
 	sessi.Options.MaxAge = -1
-
+	sessi.Values["Islogin"] = false
 	sessi.Save(x.Request(), x.Response())
 	// if sessierr != nil {
 	// 	fmt.Println("error logout")
