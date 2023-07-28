@@ -65,9 +65,10 @@
                                </a>
                               </form>
                             </li>
+                            {{if $.UserLoginSessi.Roles}}
                             <li>
-                              <form method="get" action="/projects">
-                               <button class="dropdown-item">your Projects
+                              <form method="get" action="/projectsA">
+                               <button class="dropdown-item">Admin Projects
                                </button>
                               </form>
                             </li>
@@ -79,6 +80,22 @@
                             </li>
                           </ul>
                         </li>
+                        {{else}}
+                        <li>
+                          <form method="get" action="/projects">
+                           <button class="dropdown-item">My Projects
+                           </button>
+                          </form>
+                        </li>
+                        <li>
+                          <form method="post" action="/logout">
+                           <button class="dropdown-item">Logout
+                           </button>
+                          </form>
+                        </li>
+                      </ul>
+                    </li>
+                    {{end}}
                         <button class=" btn my-2 my-sm-0 me-3 btn-light buttonContact ms-3" type="submit"><a class="contactMe h6" href="contact">Contact Me</a></button>
                       </div>
                     {{else}}
@@ -246,7 +263,7 @@
     <br>
     <br>
     <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0">
-    <h1 class="h1myproject text-light " id="ProjectSection">MY PROJECTS
+    <h1 class="h1myproject text-light " id="ProjectSection">All PROJECTS
     </h1>
   </div>
     
@@ -264,7 +281,7 @@
                     <a href="projectDetail/{{$project.Id}}" class="card-title h5 text-decoration-none">{{$project.ProjectName}}</a>
                     </div>
                     <div class="mt-2">
-                        <img class="imageProject" src="/assets/images/{{$project.Image}}" alt="">
+                        <img class="imageProject" src="/uploads/{{$project.Image}}" alt="">
                     <div>
                         <div class="card-text mt-2 card-project overflow-auto">{{$project.Description}}Project ini menampilkan berbagai macam hal yang akan di lakukan.</div>
                         <div class="iconProject mt-2">

@@ -11,89 +11,113 @@
     <title>ProjectDetail</title>
 </head>
 <body>
-   <!-- NAVBAR -->
-   <div class="">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-           <div class="brandFather"> 
-            <a href="/"><img src="/assets/images/logoID.png" class="brandnav w-25 bg-dark "></a>
-        </div>
-        
+    <!-- NAVBAR -->
+    <div class="">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container-fluid">
+             <div class="brandFather"> 
+              <a href="/"><img src="/assets/images/logoID.png" class="brandnav w-25 bg-dark "></a>
+          </div>
           
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <div class="navbar-nav">
-                  <form action="/" method="get">
-                    <button class="btn nav-item nav-link h5">Home</button>
-                  </form>
-                  <form action="../about" method="get">
-                    <button class="btn nav-item nav-link h5">About</button>
-                  </form>
-                    {{if .UserLoginSessi.Islogin}} 
-                    <form action="../addProject" method="get">
-                      <button class="btn nav-item nav-link h5">Add Project</button>
+            
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <div class="navbar-nav">
+                    <form action="/" method="get">
+                      <button class="btn nav-item nav-link h5">Home</button>
                     </form>
-                    <form action="../testimonials" method="get">
-                      <button class="btn nav-item nav-link h5">Testimonials</button>
+                    <form action="/about" method="get">
+                      <button class="btn nav-item nav-link h5">About</button>
                     </form>
-                    {{else}}
-                    <form action="../testimonials" method="get">
-                      <button class="btn nav-item nav-link h5">Testimonials</button>
-                    </form>h5">Testimonials</a>
-                    {{end}}
-                </div>
-                <form class="d-flex ms-auto visually-hidden">
-                    <input type="text" class="form-control me-sm-2" placeholder="Search">
-                    <button type="submit" class="btn btn-outline-light">Search</button>
-                </form>
-                {{if .UserLoginSessi.Islogin}}  
-                <div class="d-flex ms-auto form-inline my-2 my-lg-0" >
-                    <li class="nav-item dropdown loginButton">
-                      <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Hallo , {{.UserLoginSessi.Name}}
-                      </a>
-                      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                         <li>
-                           <form method="post" action="/logout">
-                            <button class="dropdown-item">Logout
-                            </button>
-                           </form>
-                         </li>
-                      </ul>
-                    </li>
-                    <button class=" btn my-2 my-sm-0 me-3 btn-light buttonContact ms-3" type="submit"><a class="contactMe h6" href="../contact">Contact Me</a></button>
+                      {{if .UserLoginSessi.Islogin}} 
+                      <form action="/addProject" method="get">
+                        <button class="btn nav-item nav-link h5">Add Project</button>
+                      </form>
+                      <form action="/testimonials" method="get">
+                        <button class="btn nav-item nav-link h5">Testimonials</button>
+                      </form>
+                      {{else}}
+                      <form action="/testimonials" method="get">
+                        <button class="btn nav-item nav-link h5">Testimonials</button>
+                      </form>
+                      {{end}}
                   </div>
-                {{else}}
-                <div class="d-flex ms-auto form-inline my-2 my-lg-0" >
-                  <li class="nav-item dropdown loginButton">
-                    <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Login/Register
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                       <li>
-                         <form method="get" action="/form-login">
-                          <button class="dropdown-item">Login
-                          </button>
-                         </form>
-                       </li>
-                       <li>
-                        <form method="get" action="/form-register">
-                         <button class="dropdown-item">Register
+                  <form class="d-flex ms-auto visually-hidden">
+                      <input type="text" class="form-control me-sm-2" placeholder="Search">
+                      <button type="submit" class="btn btn-outline-light">Search</button>
+                  </form>
+                  {{if .UserLoginSessi.Islogin}}  
+                  <div class="d-flex ms-auto form-inline my-2 my-lg-0" >
+                      <li class="nav-item dropdown loginButton">
+                        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Hallo , {{.UserLoginSessi.Name}}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                          {{if $.UserLoginSessi.Roles}}
+                          <li>
+                            <form method="get" action="/projectsA">
+                             <button class="dropdown-item">Admin Projects
+                             </button>
+                            </form>
+                          </li>
+                          <li>
+                            <form method="post" action="/logout">
+                             <button class="dropdown-item">Logout
+                             </button>
+                            </form>
+                          </li>
+                        </ul>
+                      </li>
+                      {{else}}
+                      <li>
+                        <form method="get" action="/projects">
+                         <button class="dropdown-item">My Projects
+                         </button>
+                        </form>
+                      </li>
+                      <li>
+                        <form method="post" action="/logout">
+                         <button class="dropdown-item">Logout
                          </button>
                         </form>
                       </li>
                     </ul>
                   </li>
-                  <button class=" btn my-2 my-sm-0 me-3 btn-light buttonContact ms-3" type="submit"><a class="contactMe h6" href="../contact">Contact Me</a></button>
-                </div>
                   {{end}}
-            </div>
-        </div>
-    </nav>
-</div>
+                      <button class=" btn my-2 my-sm-0 me-3 btn-light buttonContact ms-3" type="submit"><a class="contactMe h6" href="contact">Contact Me</a></button>
+                    </div>
+                  {{else}}
+                  <div class="d-flex ms-auto form-inline my-2 my-lg-0" >
+                    <li class="nav-item dropdown loginButton">
+                      <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Login/Register
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                         <li>
+                           <form method="get" action="/form-login">
+                            <button class="dropdown-item">Login
+                            </button>
+                           </form>
+                         </li>
+                         <li>
+                          <form method="get" action="/form-register">
+                           <button class="dropdown-item">Register
+                           </button>
+                          </form>
+                        </li>
+                      </ul>
+                    </li>
+                    <button class=" btn my-2 my-sm-0 me-3 btn-light buttonContact ms-3" type="submit"><a class="contactMe h6" href="contact">Contact Me</a></button>
+                  </div>
+                    {{end}}
+                    
+              </div>
+          </div>
+      </nav>
+  </div>
 <!-- END NAV -->
 
     <!--ISI  -->
@@ -113,7 +137,7 @@
           
             <div >
                 <div class="hover02" >
-                <figure><img class="imageProject " src="/assets/images/{{.Project.Image}}" alt=""></figure>
+                <figure><img class="imageProject " src="/uploads/{{.Project.Image}}" alt=""></figure>
                 </div>
             <div>
                 <p class="card-text mt-2" style="height: 200px;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat quo expedita cupiditate odio nam inventore dolore sit voluptatum fugit at voluptatibus, consequatur rerum, harum amet similique explicabo debitis autem accusantium. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi illum illo quasi qui nostrum optio eius sit magnam accusantium deleniti quae quidem aspernatur reiciendis voluptate debitis, voluptates minima 

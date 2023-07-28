@@ -10,6 +10,7 @@ import (
 	"time"
 	"unicode"
 	conect "vodlab/com/connection"
+	middleware "vodlab1/com/middlehandler"
 
 	"github.com/gorilla/sessions"
 	"github.com/labstack/echo-contrib/session"
@@ -73,20 +74,23 @@ func main() {
 
 	e.Use(session.Middleware(sessions.NewCookieStore([]byte("adi"))))
 	e.Static("/assets", "assets")
+	e.Static("/uploads", "uploads")
 
 	e.GET("/", home)
 	e.GET("/contact", contact)
 	e.GET("/testimonials", testimonials)
 	e.GET("/about", about)
 	e.GET("/projectDetail/:id", projectDetail)
+	// ALL PROJECTS
 	e.GET("/projects", projects)
+	e.GET("/projectsA", projectsA)
 
 	// Delete Project
 	e.POST("/deletemyProject/:id", deletemyProject)
 
 	// Add Project
 	e.GET("/addProject", addProject)
-	e.POST("/addmyProject", addmyProject)
+	e.POST("/addmyProject", middleware.UploadFile(addmyProject))
 
 	// Update
 	e.GET("/updateProject/:id", editProject)
@@ -190,6 +194,7 @@ func home(x echo.Context) error {
 		userLoginSessi.Roles = false
 	} else {
 		userLoginSessi.Roles = true
+		// sessi.Values["id"] = Project.AuthorId
 	}
 	// dataProject := Project{}
 	// if sessi.Values["id"] == dataProject.AuthorId {
@@ -220,7 +225,7 @@ func Duration(StartDate time.Time, EndDate time.Time) string {
 	diff := EndDate.Sub(StartDate)
 	day := int(diff.Hours() / 24)
 	week := day / 7
-	month := day / 30
+	month := week / 4
 	year := month / 12
 	if day < 7 {
 		return strconv.Itoa(day) + " Day"
@@ -299,8 +304,48 @@ func projects(x echo.Context) error {
 		fmt.Println("addproject form valueislogin =  ", sessi.Values["Islogin"])
 		return x.Redirect(http.StatusMovedPermanently, "/")
 	}
+	// user := Users{}
+	// dataProject := Project{}
+	// conect.Conn.QueryRow(context.Background(), "SELECT role FROM tb_users").Scan(&user.Role)
+	// if sessi.Values["role"] == "admin" {
+	// 	sessi.Values["id"] = dataProject.Id
+	// }
 
 	tmplate, err := template.ParseFiles("htmls/projects.html")
+
+	if err != nil {
+		return x.JSON(500, err.Error())
+	}
+
+	// fmt.Println(userLoginSessi.Name)
+	flash := map[string]interface{}{
+		"Project":        dataProject,
+		"UserLoginSessi": userLoginSessi,
+	}
+	delete(sessi.Values, "message")
+	delete(sessi.Values, "status")
+	sessi.Save(x.Request(), x.Response())
+
+	return tmplate.Execute(x.Response(), flash)
+}
+
+// Projects admin
+func projectsA(x echo.Context) error {
+	sessi, _ := session.Get("session", x)
+
+	if sessi.Values["Islogin"] != true {
+		fmt.Println("addproject form userloginsesi.islogin =  ", userLoginSessi.Islogin)
+		fmt.Println("addproject form valueislogin =  ", sessi.Values["Islogin"])
+		return x.Redirect(http.StatusMovedPermanently, "/")
+	}
+	// user := Users{}
+	// dataProject := Project{}
+	// conect.Conn.QueryRow(context.Background(), "SELECT role FROM tb_users").Scan(&user.Role)
+	// if sessi.Values["role"] == "admin" {
+	// 	sessi.Values["id"] = dataProject.Id
+	// }
+
+	tmplate, err := template.ParseFiles("htmls/projectsA.html")
 
 	if err != nil {
 		return x.JSON(500, err.Error())
@@ -403,6 +448,7 @@ func projectDetail(c echo.Context) error {
 	// fmt.Println("datanotstring", datanotstring)
 	fmt.Println("authorid", dataProject.AuthorId)
 	fmt.Println("value id", sessi.Values["id"])
+	fmt.Println("Images ", dataProject.Image)
 
 	dataProject.Durations = Duration(dataProject.StartDate, dataProject.EndDate)
 
@@ -461,10 +507,10 @@ func addmyProject(c echo.Context) error {
 	reactjs := c.FormValue("reactjs")
 	nodejs := c.FormValue("nodejs")
 	technologies := []string{golang, javascript, reactjs, nodejs}
-	image := c.FormValue("file")
+	// image := c.FormValue("file")
 	// Id, _ := strconv.Atoi(id)
 	// if
-
+	imageUpload := c.Get("dataFile").(string)
 	// if checkValue(technologies, "on") {
 	// 	icon.NodeJs = true
 	// }
@@ -473,7 +519,7 @@ func addmyProject(c echo.Context) error {
 	// }
 	sessi, _ := session.Get("session", c)
 
-	_, err := conect.Conn.Exec(context.Background(), "INSERT INTO tb_projects(p_name, start_date, end_date, description, technologies, image ,author_id) VALUES ($1, $2, $3, $4, $5, $6 ,$7)", projectName, StartDate, EndDate, description, technologies, image, sessi.Values["id"].(int))
+	_, err := conect.Conn.Exec(context.Background(), "INSERT INTO tb_projects(p_name, start_date, end_date, description, technologies, image ,author_id) VALUES ($1, $2, $3, $4, $5, $6 ,$7)", projectName, StartDate, EndDate, description, technologies, imageUpload, sessi.Values["id"].(int))
 	fmt.Println("id:", sessi.Values["id"])
 	if err != nil {
 		fmt.Println("error guys")

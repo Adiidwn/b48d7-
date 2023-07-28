@@ -14,8 +14,8 @@
 </head>
 <body>
 
-<!-- NAVBAR -->
-<div class="">
+ <!-- NAVBAR -->
+ <div class="">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
          <div class="brandFather"> 
@@ -59,14 +59,37 @@
                       Hallo , {{.UserLoginSessi.Name}}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                       <li>
-                         <form method="post" action="/logout">
-                          <button class="dropdown-item">Logout
-                          </button>
-                         </form>
-                       </li>
+                      {{if $.UserLoginSessi.Roles}}
+                      <li>
+                        <form method="get" action="/projectsA">
+                         <button class="dropdown-item">Admin Projects
+                         </button>
+                        </form>
+                      </li>
+                      <li>
+                        <form method="post" action="/logout">
+                         <button class="dropdown-item">Logout
+                         </button>
+                        </form>
+                      </li>
                     </ul>
                   </li>
+                  {{else}}
+                  <li>
+                    <form method="get" action="/projects">
+                     <button class="dropdown-item">My Projects
+                     </button>
+                    </form>
+                  </li>
+                  <li>
+                    <form method="post" action="/logout">
+                     <button class="dropdown-item">Logout
+                     </button>
+                    </form>
+                  </li>
+                </ul>
+              </li>
+              {{end}}
                   <button class=" btn my-2 my-sm-0 me-3 btn-light buttonContact ms-3" type="submit"><a class="contactMe h6" href="contact">Contact Me</a></button>
                 </div>
               {{else}}
@@ -93,6 +116,7 @@
                 <button class=" btn my-2 my-sm-0 me-3 btn-light buttonContact ms-3" type="submit"><a class="contactMe h6" href="contact">Contact Me</a></button>
               </div>
                 {{end}}
+                
           </div>
       </div>
   </nav>
@@ -103,7 +127,7 @@
 <h1 class="text-center mt-5 ">ADD MY PROJECT</h1>
 
 
-<form class="myprojectLength  container-fluid  " action="/addmyProject" method="POST" >
+<form class="myprojectLength  container-fluid  " action="/addmyProject" method="POST" enctype="multipart/form-data">
     <div class="h6">
       <label class="mb-2" for="projectname" >Project Name</label>
       <input type="text" class="form-control" id="projectname" aria-describedby="" placeholder="Enter project name" name="projectName">
@@ -154,7 +178,7 @@
   <!-- INSERT FILE -->
     <div class="mb-2 mt-2 h6">
       <label class="mb-2 mt-2" for="uploadimage" >Upload Files/Image</label>
-      <input class="form-control" type="file" id="myFile" name="file" multiple>
+      <input class="form-control" type="file" id="file" name="file" multiple>
     </div>
 <!-- BUTTON SUBMIT -->
     <div class="mt-4 d-flex flex-row-reverse">
