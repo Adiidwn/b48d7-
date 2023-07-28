@@ -2,11 +2,13 @@ package main
 
 import (
 	"context"
+	"database/sql"
 	"fmt"
 	"html/template"
 	"net/http"
 	"strconv"
 	"time"
+	"unicode"
 	conect "vodlab/com/connection"
 
 	"github.com/gorilla/sessions"
@@ -29,6 +31,8 @@ type Project struct {
 	NodeJs       bool
 	Javascipt    bool
 	Image        string
+	AuthorId     int
+	Idrelate     bool
 }
 type Users struct {
 	Id       int
@@ -40,6 +44,8 @@ type Users struct {
 type UserLoginSessi struct {
 	Islogin bool
 	Name    string
+	Roles   bool
+	Id      bool
 }
 
 var userLoginSessi = UserLoginSessi{}
@@ -105,8 +111,11 @@ func home(x echo.Context) error {
 	if err != nil {
 		return x.JSON(500, err.Error())
 	}
-
-	data1, dataerror := conect.Conn.Query(context.Background(), "SELECT * FROM tb_projects")
+	// var datanotstring sql.NullString
+	// var startDate = time.DateOnly
+	// var endDate = time.DateOnly
+	sessi, _ := session.Get("session", x)
+	data1, dataerror := conect.Conn.Query(context.Background(), "SELECT tb_projects.id, tb_users.username,tb_projects.author_id, tb_projects.p_name, tb_projects.description,tb_projects.technologies, tb_projects.image,tb_projects.start_date ,tb_projects.end_date FROM tb_projects LEFT JOIN tb_users ON tb_projects.author_id = tb_users.id ")
 
 	if dataerror != nil {
 		return x.JSON(500, err.Error())
@@ -116,13 +125,17 @@ func home(x echo.Context) error {
 	for data1.Next() {
 		var each = Project{}
 
-		data1.Scan(&each.Id, &each.ProjectName, &each.StartDate, &each.EndDate, &each.Description, &each.Technologies, &each.Image)
+		data1.Scan(&each.Id, &each.Author, &each.AuthorId, &each.ProjectName, &each.Description, &each.Technologies, &each.Image, &each.StartDate, &each.EndDate)
 		// if dataerror != nil {
 		// 	return x.JSON(500, err.Error())
 		// }
-		each.Author = "Adiwidiawan"
-		// fmt.Println("id:", each.Id, "namaP;", each.ProjectName)
+		// fmt.Println("author/username", each.Author, "authorID", each.AuthorId)
+		// each.Author = datanotstring.String
+		// each.StartDate = time.DateOnly(startDate)
+		// each.EndDate = endDate.String
 		each.Durations = Duration(each.StartDate, each.EndDate)
+		// fmt.Println("startDate:", each.StartDate, "endDate:", each.EndDate)
+		// fmt.Println("id:", each.Id, "namaP;", each.Author, "namaproject", each.ProjectName, "duration", each.Durations, "description", each.Description, "tech", each.Technologies, "image", each.Image)
 
 		if checkValue(each.Technologies, "ReactJs") {
 			each.ReactJs = true
@@ -136,12 +149,18 @@ func home(x echo.Context) error {
 		if checkValue(each.Technologies, "Javascript") {
 			each.Javascipt = true
 		}
+
+		if sessi.Values["id"] == each.AuthorId {
+			each.Idrelate = true
+		}
+		// fmt.Println("values id ", sessi.Values["id"], "author id ", each.AuthorId)
 		// t1 := each.StartDate
 		// t2 := each.EndDate
 		// diff:=t1.Sub(t2)
 
 		dataProject = append(dataProject, each)
 	}
+
 	// sessi, sessierr := session.Get("session", x)
 	// if sessierr != nil {
 	// 	return x.JSON(500, sessierr.Error())
@@ -159,18 +178,31 @@ func home(x echo.Context) error {
 	// }
 	// return tmplate.Execute(x.Response(), flash)
 
-	sessi, _ := session.Get("session", x)
-
 	if sessi.Values["Islogin"] != true {
 		userLoginSessi.Islogin = false
 	} else {
 		userLoginSessi.Islogin = true
 		userLoginSessi.Name = sessi.Values["username"].(string)
 	}
+
+	if sessi.Values["role"] != "admin" {
+		userLoginSessi.Roles = false
+	} else {
+		userLoginSessi.Roles = true
+	}
+	// dataProject := Project{}
+	// if sessi.Values["id"] == dataProject.AuthorId {
+	// 	userLoginSessi.Id = true
+	// } else {
+	// 	userLoginSessi.Id = false
+	// }
+	// fmt.Println("sessi.value ID", sessi.Values["id"], "authorID", dataProject.AuthorId)
+	// println("values id:", sessi.Values["id"], "project ID :", projectId.AuthorId)
 	// fmt.Println(userLoginSessi.Name)
 	flash := map[string]interface{}{
 		"Project":        dataProject,
 		"UserLoginSessi": userLoginSessi,
+
 		// "FlashM":         sessi.Values["message"],
 		// "FlashS":         sessi.Values["status"],
 	}
@@ -232,10 +264,9 @@ func contact(x echo.Context) error {
 func addProject(x echo.Context) error {
 	sessi, _ := session.Get("session", x)
 
-	if userLoginSessi.Islogin != false {
-		userLoginSessi.Islogin = true
-		userLoginSessi.Name = sessi.Values["username"].(string)
-	} else {
+	if sessi.Values["Islogin"] != true {
+		fmt.Println("addproject form userloginsesi.islogin =  ", userLoginSessi.Islogin)
+		fmt.Println("addproject form valueislogin =  ", sessi.Values["Islogin"])
 		return x.Redirect(http.StatusMovedPermanently, "/")
 	}
 
@@ -319,6 +350,11 @@ func projectDetail(c echo.Context) error {
 		userLoginSessi.Islogin = true
 		userLoginSessi.Name = sessi.Values["username"].(string)
 	}
+	if sessi.Values["role"] != "admin" {
+		userLoginSessi.Roles = false
+	} else {
+		userLoginSessi.Roles = true
+	}
 
 	id := c.Param("id") // misal : 1
 
@@ -330,10 +366,31 @@ func projectDetail(c echo.Context) error {
 	Id, _ := strconv.Atoi(id)
 
 	dataProject := Project{}
+	// var datanotstring sql.NullString
+	err1 := conect.Conn.QueryRow(context.Background(), "SELECT tb_projects.id, tb_users.username,tb_projects.author_id, tb_projects.p_name, tb_projects.description,tb_projects.technologies, tb_projects.image,tb_projects.start_date ,tb_projects.end_date FROM tb_projects LEFT JOIN tb_users ON tb_projects.author_id = tb_users.id  WHERE tb_projects.id=$1", Id).Scan(&dataProject.Id, &dataProject.Author, &dataProject.AuthorId, &dataProject.ProjectName, &dataProject.Description, &dataProject.Technologies, &dataProject.Image, &dataProject.StartDate, &dataProject.EndDate)
 
-	err1 := conect.Conn.QueryRow(context.Background(), "SELECT * FROM tb_projects WHERE id=$1", Id).Scan(&dataProject.Id, &dataProject.ProjectName, &dataProject.StartDate, &dataProject.EndDate, &dataProject.Description, &dataProject.Technologies, &dataProject.Image)
+	// dataProject.Author = datanotstring.String
+	// fmt.Println("datanotstring", datanotstring)
+	fmt.Println("authorid", dataProject.AuthorId)
+	fmt.Println("value id", sessi.Values["id"])
 
 	dataProject.Durations = Duration(dataProject.StartDate, dataProject.EndDate)
+
+	if checkValue(dataProject.Technologies, "ReactJs") {
+		dataProject.ReactJs = true
+	}
+	if checkValue(dataProject.Technologies, "Golang") {
+		dataProject.Golang = true
+	}
+	if checkValue(dataProject.Technologies, "NodeJs") {
+		dataProject.NodeJs = true
+	}
+	if checkValue(dataProject.Technologies, "Javascript") {
+		dataProject.Javascipt = true
+	}
+	if sessi.Values["id"] == dataProject.AuthorId {
+		dataProject.Idrelate = true
+	}
 
 	if err1 != nil {
 		return c.JSON(500, err.Error())
@@ -384,9 +441,10 @@ func addmyProject(c echo.Context) error {
 	// if checkValue(technologies, "on") {
 	// 	icon.Javascipt = true
 	// }
+	sessi, _ := session.Get("session", c)
 
-	_, err := conect.Conn.Exec(context.Background(), "INSERT INTO tb_projects(p_name, start_date, end_date, description, technologies, image) VALUES ($1, $2, $3, $4, $5, $6)", projectName, StartDate, EndDate, description, technologies, image)
-
+	_, err := conect.Conn.Exec(context.Background(), "INSERT INTO tb_projects(p_name, start_date, end_date, description, technologies, image ,author_id) VALUES ($1, $2, $3, $4, $5, $6 ,$7)", projectName, StartDate, EndDate, description, technologies, image, sessi.Values["id"].(int))
+	fmt.Println("id:", sessi.Values["id"])
 	if err != nil {
 		fmt.Println("error guys")
 		c.JSON(http.StatusInternalServerError, err.Error())
@@ -412,7 +470,7 @@ func deletemyProject(c echo.Context) error {
 // EDIT PROJECT FORM
 func editProject(x echo.Context) error {
 	sessi, _ := session.Get("session", x)
-	if userLoginSessi.Islogin != true {
+	if sessi.Values["Islogin"] != true {
 		return x.Redirect(http.StatusMovedPermanently, "/")
 	} else {
 		userLoginSessi.Islogin = true
@@ -426,9 +484,11 @@ func editProject(x echo.Context) error {
 	if err != nil {
 		return x.JSON(500, err.Error())
 	}
-	dataProject := Project{}
-	err1 := conect.Conn.QueryRow(context.Background(), "SELECT * FROM tb_projects WHERE id=$1", Id).Scan(&dataProject.Id, &dataProject.ProjectName, &dataProject.StartDate, &dataProject.EndDate, &dataProject.Description, &dataProject.Technologies, &dataProject.Image)
 
+	var datanotstring sql.NullString
+	dataProject := Project{}
+	err1 := conect.Conn.QueryRow(context.Background(), "SELECT tb_projects.id, tb_users.username, tb_projects.p_name, tb_projects.description,tb_projects.technologies, tb_projects.image,tb_projects.start_date ,tb_projects.end_date FROM tb_projects LEFT JOIN tb_users ON tb_projects.id = tb_users.id WHERE tb_projects.id=$1", Id).Scan(&dataProject.Id, &datanotstring, &dataProject.ProjectName, &dataProject.Description, &dataProject.Technologies, &dataProject.Image, &dataProject.StartDate, &dataProject.EndDate)
+	dataProject.Author = datanotstring.String
 	dataProject.Durations = Duration(dataProject.StartDate, dataProject.EndDate)
 
 	if err1 != nil {
@@ -555,10 +615,12 @@ func login(x echo.Context) error {
 	sessi.Options.MaxAge = 1080 //10800 = 3jam
 	sessi.Values["message"] = "Login Succes !"
 	sessi.Values["status"] = true
+	sessi.Values["Islogin"] = true
+	sessi.Values["id"] = dataUser.Id
 	sessi.Values["username"] = dataUser.Username
 	sessi.Values["role"] = dataUser.Role
 	sessi.Values["email"] = dataUser.Email
-	sessi.Values["Islogin"] = true
+	fmt.Println("beres login value id apaan nih", sessi.Values["id"])
 	sessi.Save(x.Request(), x.Response())
 
 	return x.Redirect(http.StatusMovedPermanently, "/")
@@ -626,12 +688,13 @@ func logout(x echo.Context) error {
 
 	sessi.Options.MaxAge = -1
 	sessi.Values["Islogin"] = false
+	userLoginSessi.Islogin = false
 	sessi.Save(x.Request(), x.Response())
 	// if sessierr != nil {
 	// 	fmt.Println("error logout")
 	// 	return redirectWMessage(x, "Logout Failed !", false, "/form-login")
 	// }
-
+	fmt.Println("BERES LOGOUT APA NIH", sessi.Values["Islogin"])
 	return redirectWMessage(x, "Logout Succesfull", false, "/")
 }
 
@@ -646,4 +709,25 @@ func redirectWMessage(c echo.Context, message string, status bool, redirectPath 
 	sess.Values["status"] = status
 	sess.Save(c.Request(), c.Response())
 	return c.Redirect(http.StatusMovedPermanently, redirectPath)
+}
+
+func verifyPassword(s string) (sevenOrMore, number, upper, special bool) {
+	letters := 0
+	for _, c := range s {
+		switch {
+		case unicode.IsNumber(c):
+			number = true
+		case unicode.IsUpper(c):
+			upper = true
+			letters++
+		case unicode.IsPunct(c) || unicode.IsSymbol(c):
+			special = true
+		case unicode.IsLetter(c) || c == ' ':
+			letters++
+		default:
+			//return false, false, false, false
+		}
+	}
+	sevenOrMore = letters >= 7
+	return
 }

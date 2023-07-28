@@ -26,13 +26,23 @@
         
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="navbar-nav">
-                    <a href="/" class="nav-item nav-link  h5">Home</a>
-                    <a href="../about" class="nav-item nav-link  h5">About</a>
+                  <form action="/" method="get">
+                    <button class="btn nav-item nav-link h5">Home</button>
+                  </form>
+                  <form action="../about" method="get">
+                    <button class="btn nav-item nav-link h5">About</button>
+                  </form>
                     {{if .UserLoginSessi.Islogin}} 
-                    <a href="../addProject" class="nav-item nav-link h5">Add Project</a>
-                    <a href="../testimonials" class="nav-item nav-link h5">Testimonials</a>
+                    <form action="../addProject" method="get">
+                      <button class="btn nav-item nav-link h5">Add Project</button>
+                    </form>
+                    <form action="../testimonials" method="get">
+                      <button class="btn nav-item nav-link h5">Testimonials</button>
+                    </form>
                     {{else}}
-                    <a href="../testimonials" class="nav-item nav-link h5">Testimonials</a>
+                    <form action="../testimonials" method="get">
+                      <button class="btn nav-item nav-link h5">Testimonials</button>
+                    </form>h5">Testimonials</a>
                     {{end}}
                 </div>
                 <form class="d-flex ms-auto visually-hidden">
@@ -94,17 +104,20 @@
     <div class="card text-center container CFatherPD">
         <div class="card-header">
          Project Detail
-        </div>
-        <div class="card-body project-body">
-            <div>
-          <h5 class="card-title mb-3">{{ .Project.ProjectName }} | By : {{.UserLoginSessi.Name}}</h5>
+         <div>
+          <h5 class="card-title mb-1">{{ .Project.ProjectName }}</h5>
             </div>
+        </div>
+        
+        <div class="card-body project-body">
+          
             <div >
                 <div class="hover02" >
                 <figure><img class="imageProject " src="/assets/images/{{.Project.Image}}" alt=""></figure>
                 </div>
             <div>
-                <p class="card-text mt-2"> {{ .Project.Description }}</p>
+                <p class="card-text mt-2" style="height: 200px;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat quo expedita cupiditate odio nam inventore dolore sit voluptatum fugit at voluptatibus, consequatur rerum, harum amet similique explicabo debitis autem accusantium. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi illum illo quasi qui nostrum optio eius sit magnam accusantium deleniti quae quidem aspernatur reiciendis voluptate debitis, voluptates minima 
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati aut eaque perferendis ab quod exercitationem, illum, ipsam eius reprehenderit, autem labore? Possimus perspiciatis blanditiis, cupiditate ad animi eos debitis consectetur?praesentium a. {{ .Project.Description }}</p>
                 <div class="iconProject">
                   {{if .Project.NodeJs}}
                   <i class="fa-brands fa-node-js"></i>
@@ -124,21 +137,25 @@
                 </div>
                 
             </div>
-            {{if .UserLoginSessi.Islogin}}  
-            <div class="d-flex">
+            {{if .Project.Idrelate}}  
+            <div class="button-card mt-3">
               <form class="w-50 mb-2" action="/updateProject/{{.Project.Id}}" method="get" >
               <button class="btn btn-primary bg-dark border-black w-50">Edit</button>
             </form>
           </form>
+          {{if $.UserLoginSessi.Roles}}
           <form class="w-50 mb-2" action="/deletemyProject/{{.Id}}" method="post" >
           <button class="btn btn-primary bg-dark border-black w-50">Delete</button>
           </form>
-          {{else}}
+          {{end}}
+         
+        </div>
+        {{else}}
          
         {{end}}
         </div>
         </div>
-        </div>
+        
         <div class="card-footer text-muted d-flex justify-content-center">
           Duration : {{ .Project.Durations }} | {{ .startDateS }} - {{ .endDateS }}  | {{ .Project.Author }}
         </div>

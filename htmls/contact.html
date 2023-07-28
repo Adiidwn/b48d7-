@@ -31,13 +31,23 @@
         
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="navbar-nav">
-                    <a href="/" class="nav-item nav-link h5">Home</a>
-                    <a href="about" class="nav-item nav-link  h5">About</a>
+                  <form action="/" method="get">
+                    <button class="btn nav-item nav-link h5">Home</button>
+                  </form>
+                  <form action="/about" method="get">
+                    <button class="btn nav-item nav-link h5">About</button>
+                  </form>
                     {{if .UserLoginSessi.Islogin}} 
-                    <a href="addProject" class="nav-item nav-link h5">Add Project</a>
-                    <a href="testimonials" class="nav-item nav-link h5">Testimonials</a>
+                    <form action="/addProject" method="get">
+                      <button class="btn nav-item nav-link h5">Add Project</button>
+                    </form>
+                    <form action="/testimonials" method="get">
+                      <button class="btn nav-item nav-link h5">Testimonials</button>
+                    </form>
                     {{else}}
-                    <a href="testimonials" class="nav-item nav-link h5">Testimonials</a>
+                    <form action="/testimonials" method="get">
+                      <button class="btn nav-item nav-link h5">Testimonials</button>
+                    </form>
                     {{end}}
                 </div>
                 <form class="d-flex ms-auto visually-hidden">

@@ -29,13 +29,23 @@
             
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="navbar-nav">
-                        <a href="/" class="nav-item nav-link active h5">Home</a>
-                        <a href="about" class="nav-item nav-link  h5">About</a>
+                      <form action="/" method="get">
+                        <button class="btn nav-item nav-link h5 active">Home</button>
+                      </form>
+                      <form action="/about" method="get">
+                        <button class="btn nav-item nav-link h5">About</button>
+                      </form>
                         {{if .UserLoginSessi.Islogin}} 
-                        <a href="addProject" class="nav-item nav-link h5">Add Project</a>
-                        <a href="testimonials" class="nav-item nav-link h5">Testimonials</a>
+                        <form action="/addProject" method="get">
+                          <button class="btn nav-item nav-link h5">Add Project</button>
+                        </form>
+                        <form action="/testimonials" method="get">
+                          <button class="btn nav-item nav-link h5">Testimonials</button>
+                        </form>
                         {{else}}
-                        <a href="testimonials" class="nav-item nav-link h5">Testimonials</a>
+                        <form action="/testimonials" method="get">
+                          <button class="btn nav-item nav-link h5">Testimonials</button>
+                        </form>
                         {{end}}
                     </div>
                     <form class="d-flex ms-auto visually-hidden">
@@ -251,7 +261,7 @@
                         <img class="imageProject" src="/assets/images/{{$project.Image}}" alt="">
                     <div>
                         <div class="card-text mt-2 card-project overflow-auto">{{$project.Description}}Project ini menampilkan berbagai macam hal yang akan di lakukan.</div>
-                        <div class="iconProject mt-3">
+                        <div class="iconProject mt-2">
                             {{if $project.NodeJs}}
                             <i class="fa-brands fa-node-js"></i> 
                             {{end}}
@@ -266,24 +276,28 @@
                             {{end}}
                         </div>
                     </div>
-                    {{if $.UserLoginSessi.Islogin}}  
-                    <div class="button-card mt-3">
+                  
+                   {{if $project.Idrelate}}
+                    <div class="button-card mt-2">
                         <form class="w-50 mb-2" action="/updateProject/{{$project.Id}}" method="get" >
                         <button class="btn btn-dark w-100">Edit</button>
                         </form>
+                      {{if $.UserLoginSessi.Roles}}
                         <form class="w-50 mb-2" action="/deletemyProject/{{$project.Id}}" method="post" >
                         <button class="btn btn-dark w-100">Delete</button>
                         </form>
+                        {{end}}
                     </div>
-                    {{else}}
+                  {{else}}
                     
                   {{end}}
                 </div>
             </div>
                 <div class="card-footer text-muted mb-3">
-                    Duration: {{$project.Durations}}
+                    Duration: {{$project.Durations}} | {{ $project.Author}}
                 </div>
               </div>
+             
               {{end}}
           </div>
          
