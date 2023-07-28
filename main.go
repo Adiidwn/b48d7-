@@ -79,6 +79,7 @@ func main() {
 	e.GET("/testimonials", testimonials)
 	e.GET("/about", about)
 	e.GET("/projectDetail/:id", projectDetail)
+	e.GET("/projects", projects)
 
 	// Delete Project
 	e.POST("/deletemyProject/:id", deletemyProject)
@@ -115,7 +116,7 @@ func home(x echo.Context) error {
 	// var startDate = time.DateOnly
 	// var endDate = time.DateOnly
 	sessi, _ := session.Get("session", x)
-	data1, dataerror := conect.Conn.Query(context.Background(), "SELECT tb_projects.id, tb_users.username,tb_projects.author_id, tb_projects.p_name, tb_projects.description,tb_projects.technologies, tb_projects.image,tb_projects.start_date ,tb_projects.end_date FROM tb_projects LEFT JOIN tb_users ON tb_projects.author_id = tb_users.id ")
+	data1, dataerror := conect.Conn.Query(context.Background(), "SELECT tb_projects.id, tb_users.username,tb_projects.author_id, tb_projects.p_name, tb_projects.description,tb_projects.technologies, tb_projects.image,tb_projects.start_date ,tb_projects.end_date FROM tb_projects LEFT JOIN tb_users ON tb_projects.author_id = tb_users.id")
 
 	if dataerror != nil {
 		return x.JSON(500, err.Error())
@@ -271,6 +272,35 @@ func addProject(x echo.Context) error {
 	}
 
 	tmplate, err := template.ParseFiles("htmls/project1.html")
+
+	if err != nil {
+		return x.JSON(500, err.Error())
+	}
+
+	// fmt.Println(userLoginSessi.Name)
+	flash := map[string]interface{}{
+		"Project":        dataProject,
+		"UserLoginSessi": userLoginSessi,
+	}
+	delete(sessi.Values, "message")
+	delete(sessi.Values, "status")
+	sessi.Save(x.Request(), x.Response())
+
+	return tmplate.Execute(x.Response(), flash)
+}
+
+// PROJECTS
+
+func projects(x echo.Context) error {
+	sessi, _ := session.Get("session", x)
+
+	if sessi.Values["Islogin"] != true {
+		fmt.Println("addproject form userloginsesi.islogin =  ", userLoginSessi.Islogin)
+		fmt.Println("addproject form valueislogin =  ", sessi.Values["Islogin"])
+		return x.Redirect(http.StatusMovedPermanently, "/")
+	}
+
+	tmplate, err := template.ParseFiles("htmls/projects.html")
 
 	if err != nil {
 		return x.JSON(500, err.Error())
