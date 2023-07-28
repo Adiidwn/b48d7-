@@ -6,12 +6,14 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	"net/mail"
 	"strconv"
 	"time"
 	"unicode"
 	conect "vodlab/com/connection"
 	middleware "vodlab1/com/middlehandler"
 
+	"github.com/go-passwd/validator"
 	"github.com/gorilla/sessions"
 	"github.com/labstack/echo-contrib/session"
 	"github.com/labstack/echo/v4"
@@ -682,6 +684,8 @@ func login(x echo.Context) error {
 
 	bcrypterr := bcrypt.CompareHashAndPassword([]byte(dataUser.Password), []byte(password))
 
+	// Validation
+
 	if bcrypterr != nil {
 		fmt.Println("isi pasword compare has password", bcrypterr)
 		return redirectWMessage(x, "Login Failed !", false, "/form-login")
@@ -742,6 +746,20 @@ func register(x echo.Context) error {
 
 	// var ErrHashTooShort = errors.New("crypto/bcrypt: hashedSecret too short to be a bcrypted password")
 
+	// VALIDATION PASSWORD
+	passwordValidator := validator.New(validator.MinLength(5, nil), validator.MaxLength(10, nil))
+	errvalidation := passwordValidator.Validate(passwordV)
+	if errvalidation != nil {
+		return redirectWMessage(x, "Regist Failed,Password  Min Length : 5, Max Length : 10!", false, "/form-register")
+	}
+	// USERNAME VALIDATION
+	nameValidator := validator.New(validator.MinLength(4, nil), validator.MaxLength(20, nil))
+	errvalidationU := nameValidator.Validate(usernameV)
+	if errvalidationU != nil {
+		return redirectWMessage(x, "Regist Failed,User  Min Length : 4 !", false, "/form-register")
+	}
+	// VALIDATION EMAIL
+
 	passwordHashed, pwerror := bcrypt.GenerateFromPassword([]byte(passwordV), 7)
 
 	if pwerror != nil {
@@ -749,10 +767,20 @@ func register(x echo.Context) error {
 		return x.JSON(http.StatusInternalServerError, pwerror.Error())
 	}
 
+	// VALIDATION EMAIL
+	// for _, a := range addresses {
+	// 	if emailV, ok := validMailAddress(a); ok {
+	// 		fmt.Printf("value: %-30s valid email: %-10t address: %s\n", a, ok, emailV)
+	// 		return redirectWMessage(x, "Regist Succes !", true, "/form-login")
+	// 	} else {
+	// 		return redirectWMessage(x, "Regist Failed,Email format need @example.com ", false, "/form-register")
+	// 	}
+	// }
+
 	_, err := conect.Conn.Exec(context.Background(), "INSERT INTO tb_users (username, email, password ,role) VALUES ($1, $2, $3 ,$4)", usernameV, emailV, passwordHashed, "user")
 
 	if err != nil {
-		fmt.Println("error INSERT DATA guys")
+
 		return redirectWMessage(x, "Regist Failed !", false, "/form-register")
 	}
 
@@ -806,4 +834,17 @@ func verifyPassword(s string) (sevenOrMore, number, upper, special bool) {
 	}
 	sevenOrMore = letters >= 7
 	return
+}
+func validMailAddress(address string) (string, bool) {
+	addr, err := mail.ParseAddress(address)
+	if err != nil {
+		return "", false
+	}
+	return addr.Address, true
+}
+
+var addresses = []string{
+	"foo@gmail.com",
+	"Gopher <from@example.com>",
+	"example",
 }

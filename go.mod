@@ -11,6 +11,11 @@ require (
 )
 
 require (
+	github.com/cameronnewman/go-emailvalidation/v3 v3.2.74 // indirect
+	github.com/go-passwd/validator v0.0.0-20180902184246-0b4c967e436b // indirect
+)
+
+require (
 	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
 	github.com/gorilla/context v1.1.1 // indirect; indirect// indirect// indirect// indirect
 	github.com/gorilla/securecookie v1.1.1 // indirect
