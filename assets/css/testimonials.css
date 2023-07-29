@@ -59,6 +59,7 @@
     gap: 50px;
     margin-bottom: 30px;
     animation: fadeUp 2s;
+    height: 700px !important;
 }
 .testiCard{
     box-shadow: 0px 0px 10px;

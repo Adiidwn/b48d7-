@@ -160,11 +160,13 @@ func home(x echo.Context) error {
 		if sessi.Values["id"] == each.AuthorId {
 			each.Idrelate = true
 		}
+		sessi.Values["image"] = each.Image
+
 		// fmt.Println("values id ", sessi.Values["id"], "author id ", each.AuthorId)
 		// t1 := each.StartDate
 		// t2 := each.EndDate
 		// diff:=t1.Sub(t2)
-
+		// fmt.Println("image", each.Image)
 		dataProject = append(dataProject, each)
 	}
 
@@ -198,6 +200,7 @@ func home(x echo.Context) error {
 		userLoginSessi.Roles = true
 		// sessi.Values["id"] = Project.AuthorId
 	}
+	fmt.Println("image", sessi.Values["image"])
 	// dataProject := Project{}
 	// if sessi.Values["id"] == dataProject.AuthorId {
 	// 	userLoginSessi.Id = true
@@ -334,12 +337,13 @@ func projects(x echo.Context) error {
 // Projects admin
 func projectsA(x echo.Context) error {
 	sessi, _ := session.Get("session", x)
-
+	projectimage := Project{}
 	if sessi.Values["Islogin"] != true {
 		fmt.Println("addproject form userloginsesi.islogin =  ", userLoginSessi.Islogin)
 		fmt.Println("addproject form valueislogin =  ", sessi.Values["Islogin"])
 		return x.Redirect(http.StatusMovedPermanently, "/")
 	}
+	fmt.Println("images", projectimage.Image)
 	// user := Users{}
 	// dataProject := Project{}
 	// conect.Conn.QueryRow(context.Background(), "SELECT role FROM tb_users").Scan(&user.Role)
@@ -523,6 +527,7 @@ func addmyProject(c echo.Context) error {
 
 	_, err := conect.Conn.Exec(context.Background(), "INSERT INTO tb_projects(p_name, start_date, end_date, description, technologies, image ,author_id) VALUES ($1, $2, $3, $4, $5, $6 ,$7)", projectName, StartDate, EndDate, description, technologies, imageUpload, sessi.Values["id"].(int))
 	fmt.Println("id:", sessi.Values["id"])
+
 	if err != nil {
 		fmt.Println("error guys")
 		c.JSON(http.StatusInternalServerError, err.Error())
@@ -541,7 +546,14 @@ func deletemyProject(c echo.Context) error {
 	if err1 != nil {
 		return c.JSON(500, err1.Error())
 	}
-
+	// sessi, _ := session.Get("session", c)
+	// // Removing file
+	// // Using Remove() function
+	// fmt.Println("image", sessi.Values["image"])
+	// e := os.Remove("/OneDrive/Desktop/adi/day15/uploads/sessi.Values['image']")
+	// if e != nil {
+	// 	log.Fatal(e)
+	// }
 	return c.Redirect(http.StatusMovedPermanently, "/")
 }
 
