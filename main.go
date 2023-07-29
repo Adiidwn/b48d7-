@@ -96,7 +96,7 @@ func main() {
 
 	// Update
 	e.GET("/updateProject/:id", editProject)
-	e.POST("/updatedProject/:id", updatedProject)
+	e.POST("/updatedProject/:id", middleware.UploadFile(updatedProject))
 
 	// Login/Register
 	e.GET("/form-login", formLogin)
@@ -612,11 +612,12 @@ func updatedProject(x echo.Context) error {
 	reactjs := x.FormValue("reactjs")
 	nodejs := x.FormValue("nodejs")
 	technologies := []string{golang, javascript, reactjs, nodejs}
-	image := x.FormValue("file")
+	// image := x.FormValue("file")
 	id := x.Param("id")
 	Id, _ := strconv.Atoi(id)
 
-	_, err := conect.Conn.Exec(context.Background(), "UPDATE tb_projects SET p_name = $1, start_date = $2, end_date = $3, description = $4, technologies = $5 ,image = $6 WHERE id = $7", projectName, StartDate, EndDate, description, technologies, image, Id)
+	imageUpload := x.Get("dataFile").(string)
+	_, err := conect.Conn.Exec(context.Background(), "UPDATE tb_projects SET p_name = $1, start_date = $2, end_date = $3, description = $4, technologies = $5 ,image = $6 WHERE id = $7", projectName, StartDate, EndDate, description, technologies, imageUpload, Id)
 
 	if err != nil {
 		fmt.Println("error guys")
